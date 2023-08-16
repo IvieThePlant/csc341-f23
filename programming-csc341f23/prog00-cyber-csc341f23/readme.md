@@ -1,4 +1,4 @@
-## Lab 00 Getting Started
+## Programming Assignment #00 Cybersecurity (Getting Started)
 
 <h4>
 DUE Thursday, September 7 end-of-day.
@@ -6,7 +6,7 @@ DUE Thursday, September 7 end-of-day.
 <br>Zip code and submit on Moodle
 </h4>
 
-In this lab, you will write code to complete the login verification process in the
+In this programming assignment, you will write code to complete the login verification process in the
 provided code. Along the way, you will be introduced to many of the tools that we will be using in class, including
 
 - _Git_, one of the most popular code repositories
@@ -41,26 +41,26 @@ git clone https://github.com/lars1050/csc341-f22
 mv csc341-f22 csc341-class-repo 
 ```
 
-In the repo on Github, code for each lab and in-class exercises will be posted.
+In the repo on Github, code for each programming assignment and in-class exercises will be posted.
 
-You do not want to edit inside of this repo on your machine because it will interfere with your ability to download future assignments. Instead, create another directory at this location (or elsewhere). I recommend naming it something that makes it clear that this is your working directory. Then copy the lab into your working directory. DO NOT MAKE A COPY of the repo and use that as your working directory because it is tied to that specific repo, and it will interfere with your ability to (potentially) store your work in your own repo.
+You do not want to edit inside of this repo on your machine because it will interfere with your ability to download future assignments. Instead, create another directory at this location (or elsewhere). I recommend naming it something that makes it clear that this is your working directory. Then copy the programming assignment folder into your working directory. DO NOT MAKE A COPY of the repo and use that as your working directory because it is tied to that specific repo, and it will interfere with your ability to (potentially) store your work in your own repo.
 
 Here is an example from Dr. Larson's machine:
 
 ```
 mkdir csc341-working
 cd csc341-working
-mkdir Labs
+mkdir Programming
 mkdir Exercises
 ```
 
-Personally, I would then go to my Finder or Explorer and copy files from csc341-class-repo into the appropriate folder in csc341-working. For example, place the folder "Lab00-Getting-Started" inside `csc341-working/Labs`.
+Personally, I would then go to my Finder or Explorer and copy files from csc341-class-repo into the appropriate folder in csc341-working. For example, place the folder "prog00-cyber-csc341f23" inside `csc341-working/Programming`.
 
 
 #### Open in Editor
 
 If you see the BBedit or notepad++ icon with the .java files in your Finder or Explorer, then you can double-click 
-any of the files in Lab00 that you just copied into your working directory and it will open in that editor. 
+any of the files in the prog00 folder that you just copied into your working directory and it will open in that editor. 
 If there is a different icon, then right-click the file and choose to open it with the editor.
 
 #### Open Terminal
@@ -79,7 +79,7 @@ There are 2 approaches to transforming passwords. We typically say that the tran
 
 The hashed password stored by a company provides a means to check the validity of your credentials when you login. It simply applies the transformation algorithm to the password that you entered and can perform string-matching to see if it matches the stored hashed password. _That is the functionality that you will be writing as part of this assignment._ 
 
-There are a lot of resources on line that talk about encryption and hashing passwords. In the provided code, the essence of this process has been captured, but of course it isn't really an algorithm that is impossible to reverse engineer.
+There are a lot of resources online that talk about encryption and hashing passwords. In the provided code, the essence of this process has been captured, but of course it isn't really an algorithm that is impossible to reverse engineer.
 
 - https://auth0.com/blog/encoding-encryption-hashing/ 
 - https://www.geeksforgeeks.org/difference-between-hashing-and-encryption/
@@ -89,11 +89,9 @@ There are a lot of resources on line that talk about encryption and hashing pass
 
 ## Deliverables
 
-<hr>
-
 ### Write Database.loadUsernames()
 
-Included in the assignment is a text file that stores the usernames and hashed password in csv (comma separated value) form. Complete the method in Database that reads this information from the file and stores this it in an ArrayList.
+Included in the assignment is a text file that stores the usernames and hashed password in csv (comma separated value) form. Complete the method in Database that reads this information from the file and stores this it in an ArrayList<Pair>.
 
 - https://www.w3schools.com/java/java_files_read.asp
 - https://www.geeksforgeeks.org/different-ways-reading-text-file-java/
@@ -104,11 +102,11 @@ Included in the assignment is a text file that stores the usernames and hashed p
 
 ### Write Database.loadStudents()
 
-Included in the assignment is a text csv file that stores student information, including their username. Complete the method in Database that reads this information from the file and stores it in an ArrayList.
+Included in the assignment is a text csv file that stores student information, including their username. Complete the method in Database that reads this information from the file and stores it in an ArrayList<Student>.
 
 ### Write Database.validCredentials()
 
-In Database, complete the method that validates the entered credentials. The steps for validation are
+In `Database.java`, complete the method that validates the entered credentials. The steps for validation are
 
 1. Find the username in the ArrayList.
 2. If the username is valid, hash the password entered by the user (using the hash method in Hasher). If not, return false.
@@ -117,7 +115,7 @@ In Database, complete the method that validates the entered credentials. The ste
 
 ### Complete LoginWindow.actionPerformed()
 
-In the EventHandler in the LoginWindow, manage the login attempt. The method actionPerformed() will be called when the user presses the login button. The contents of the username and password text boxes are captured. 
+In the EventHandler in the `LoginWindow.java` file, manage the login attempt. The method `actionPerformed()` will be called when the user presses the login button. The contents of the username and password text boxes are captured. 
 
 Write the code to validate the credentials. If the credentials are valid, say hello to the user using their name (which you can find in the associated Student record that is stored in the Database). You can change the message in the login window or you can simplify this process and print in the terminal (by using System.out.println()).
 
@@ -163,27 +161,27 @@ javadoc ../*.java
 
 ### Answer Questions
 
-Questions related to each lab can be found on Google drive.
+Questions related to each programming assignment can be found on Google drive.
 
-They are graded separately from the lab and due AFTER the lab is due.
+They are graded separately from the programming assignment and they are due AFTER the code is due.
 
 
 <hr>
 
-### Submit Code to Moodle, Turn in Lab Report in Class
+### Submit Code to Moodle, Turn in Submission Form in Class
 
 Zip the folder and submit via Moodle. You can zip the folder by right clicking the icon and choosing to compress it.
 
-Please complete the lab submission form and hand that in at the next class period.
+Please complete the programming assignment submission form and hand that in at the next class period.
 
 <hr>
 
 ### Assessment
 
-You can earn a maximum of 4 points on this lab. Here is the breakdown:
+You can earn a maximum of 4 points on this assignment. Here is the breakdown:
 - 1/2 point for turning it in AND it compiles
 - 1/2 point for Javadocs complete AND compiled (i.e. docs folder is submitted)
-- 3 points for passing the three test cases (meaning they meet the requirements). If you have a small error and you can identify the problem, then you can still earn 3 points.
+- 3 points for passing the three test cases (meaning they meet the requirements). If you have a minor error that you describe in the submission form, then you may still earn 3 points, depending on the severity of the error.
 
 If all the code is complete and it compiles, but ANY of the tests do not pass, you will have earned 2 of the 3 points.
 
