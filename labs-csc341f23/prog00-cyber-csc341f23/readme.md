@@ -165,12 +165,27 @@ javadoc ../*.java
 
 Questions related to each lab can be found on Google drive.
 
-They are graded separately from the lab.
+They are graded separately from the lab and due AFTER the lab is due.
 
 
 <hr>
 
-### Submit Code to Moodle
+### Submit Code to Moodle, Turn in Lab Report in Class
 
 Zip the folder and submit via Moodle. You can zip the folder by right clicking the icon and choosing to compress it.
+
+Please complete the lab submission form and hand that in at the next class period.
+
+<hr>
+
+### Assessment
+
+You can earn a maximum of 4 points on this lab. Here is the breakdown:
+- 1/2 point for turning it in AND it compiles
+- 1/2 point for Javadocs complete AND compiled (i.e. docs folder is submitted)
+- 3 points for passing the three test cases (meaning they meet the requirements). If you have a small error and you can identify the problem, then you can still earn 3 points.
+
+If all the code is complete and it compiles, but ANY of the tests do not pass, you will have earned 2 of the 3 points.
+
+If you have demonstrated effort of working on the code, you will have earned 1 of the 3 points.
        
