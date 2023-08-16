@@ -16,13 +16,13 @@ public class Hasher {
     private static final boolean debug = false;
 
     // hash maps for converting between hexidecimal and decimal
-    private Converters converters = new Converters();
+    private static Converters converters = new Converters();
     
-    /** salt string */
-    String salt = "";
+    /** Salt string to create fixed length password */
+    private String salt = "";    // initialized in constructor
     
-    /** encryption key */
-    String key = "";
+    /** Encryption key used to hash user-entered password */
+    private String key = "";    // initialized in constructor
     
     /** Create new hasher with given salt and key strings.
     * @param salt string to create fixed-length passwords
@@ -33,7 +33,7 @@ public class Hasher {
     	this.key = key;
     }
 
-    /** Transform a password into a fixed length.
+    /** Transform a password into a fixed length string.
      * 
      * @param password user-entered password
      * @param salt unique series of characters used to pad the password
