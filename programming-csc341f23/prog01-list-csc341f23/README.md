@@ -63,8 +63,8 @@ When complete, generate javadocs and inspect your work. To generate javadocs fro
 Implement the following ...
 
 - `StudentList(int capacity)` constructor with a set capacity for data.
-- `boolean isFull()` determines whether or not there is capacity for more faces.
-- `boolean isEmpty()` determines whether or not there are any faces in the List.
+- `boolean isFull()` determines whether or not there is capacity for more students.
+- `boolean isEmpty()` determines whether or not there are any students in the List.
 - `boolean isValid(int index)` determines if the given index corresponds to an element stored in the List.
 
 #### ADD Methods
@@ -75,7 +75,7 @@ Implement the following ...
     - Maintain the count.
 
 - Implement the add method `boolean add(Student student, int index)`.
-    - If the index is invalid (i.e. there is not a current element at the specified index), ignore it. Do not add the face to the list.
+    - If the index is invalid (i.e. there is not a current element at the specified index), ignore it. Do not add the student to the list.
     - If the structure is not full and the index is valid, add the element at the index indicated.
     - Shift all elements as appropriate BEFORE adding the element to make space for it.
     - If the structure is full, ignore the request. Do not add anything to the list.
