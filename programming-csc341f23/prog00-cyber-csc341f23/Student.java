@@ -4,7 +4,7 @@ import java.util.Random;
 /** Stored information for a student. */
 public class Student {
     /** Possible majors and course designators. */
-    public String[] majors = { "CSC", "MAT", "DST", "MIS", "BIO", "PHY", "CHE" };
+    public static String[] majors = { "CSC", "MAT", "DST", "MIS", "BIO", "PHY", "CHE" };
 
     /** Usernames are unique 8 digit words used to login to the system. */
     private String username;
