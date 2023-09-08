@@ -1,5 +1,7 @@
 ### Programming Assignment 01 : Building a LIST Abstract Data Type
+
 #### Due Thursday, September 14 end-of-day
+
 #### Submit a single zipped file to Moodle
 
 In this programming assignment, you will begin to create a LIST Abstract Data Type (ADT) with the same functionality that is provided by the Java ArrayList<>. This will give you insight into how structures for data collections are implemented and how the choice of implementation impacts the efficiency with respect to both time and space.
@@ -34,7 +36,8 @@ General Requirements:
 The Abstract Data Type (ADT) **_List_** refers to a collection of elements, which is maintained with primary operators that add, remove, find, and sort elements. In your reading, they distinguish between a list, bag, and set. I make no such distinctions and refer to all of them as a List, but I will be specific in whether or not those elements are unique (i.e. a set) or in a sorted order. The operators applied to a list must be specified by the user, unlike with queues in which elements are added and removed from specific locations.
 
 It is important to have a shared understanding of the list qualities and how the operators modify the list. For this lab:
-- The list may have duplicate elements. 
+
+- The list may have duplicate elements.
 - The list is not sorted.
 - If positional information is not provided, the `add()` method will add after the last element in the list, as long as the list is not full.
 - If positional information is provided, the `add()` method will add at the INDEX indicated, shifting elements to make room, as long as the index is valid.
@@ -51,11 +54,13 @@ AS you are coding, add javadocs comments where appropriate. Documentation for ja
     - most class members/attributes/fields (pick your favorite vocabulary term) are documented. Most, if not all of these, have been done for you.
 
 When complete, generate javadocs and inspect your work. To generate javadocs from the command line, create a `docs` folder inside the Lab02 folder. Compile javadoc comments from within that folder. This will generate a collection of web pages. At the command prompt, it looks like this:
+
   ```
   mkdir docs
   cd docs
   javadoc ../*.java
   ```
+
   You can view the results by opening the index.html file in your browser.
 
 #### ESSENTIALS and HELPERS
@@ -70,29 +75,28 @@ Implement the following ...
 #### ADD Methods
 
 - Implement the add method `boolean add(Student student)`.
-    - If the structure is not full, add to the end of the list. (The _end_ of the list refers to the last element in the list.)
-    - If the structure is full, ignore the request. Do not add anything to the list.
-    - Maintain the count.
+  - If the structure is not full, add to the end of the list. (The _end_ of the list refers to the last element in the list.)
+  - If the structure is full, ignore the request. Do not add anything to the list.
+  - Maintain the count.
 
 - Implement the add method `boolean add(Student student, int index)`.
-    - If the index is invalid (i.e. there is not a current element at the specified index), ignore it. Do not add the student to the list.
-    - If the structure is not full and the index is valid, add the element at the index indicated.
-    - Shift all elements as appropriate BEFORE adding the element to make space for it.
-    - If the structure is full, ignore the request. Do not add anything to the list.
-    - Maintain the count.
+  - If the index is invalid (i.e. there is not a current element at the specified index), ignore it. Do not add the student to the list.
+  - If the structure is not full and the index is valid, add the element at the index indicated.
+  - Shift all elements as appropriate BEFORE adding the element to make space for it.
+  - If the structure is full, ignore the request. Do not add anything to the list.
+  - Maintain the count.
 
 <hr>
 
 #### SEARCH Methods
 
 - Implement the `Student get(int index)` method.
-    - If the index is valid, return the element at that index. It should not be removed, just returned.
-    - If the index is not valid, <del>print an error message and</del> return null.
-
+  - If the index is valid, return the element at that index. It should not be removed, just returned.
+  - If the index is not valid, <del>print an error message and</del> return null.
 
 - Implement the `Student find(String uname)` method.
-    - If the student is in the list, return its index.
-    - If the student is not in the list, return -1 (no error message required).
+  - If the student is in the list, return its index.
+  - If the student is not in the list, return -1 (no error message required).
 
 <hr>
 
@@ -139,11 +143,6 @@ You can earn a maximum of 5 points on this assignment. Here is the breakdown:
 - 1/2 point for turning it in AND it compiles
 - 1/2 point for Javadocs complete AND compiled (i.e. docs folder is submitted)
 - 2 points for passing all the tests of constructor, status, get, and add(student)
-- 2 points for passing all the tests of add(student, index), find, toArray(). 
+- 2 points for passing all the tests of add(student, index), find, toArray().
 
 There is no partial credit for code that is partially complete. A given method is correct only when it passes all the tests for that method. You may earn partial credit for methods that pass all the tests. For example, if you pass all the tests for all but 1 method in the list, you will get partial credit.
-
-
-
-
-
