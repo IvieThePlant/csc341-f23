@@ -74,19 +74,23 @@ public class StudentList {
 
     /**
     */
-    public void add(Student student) {
+    public boolean add(Student student) {
     	/** TODO: write this */
         // Default location for adding a student is at the end of the array
-        // Add only if it is not full
+        // Add only if it is not full. Return true/false for added/not added.
+        return false;
     } // end add(Student)
 
     /**
     */
-    public void add(Student student, int index) {
+    public boolean add(Student student, int index) {
         /** TODO: write this */
         // Add at index only if it is a valid index AND the array isn't full.
         // All elements must be shifted to make room for the new item.
         // HINT: start shifting at the end until you get to where you want to add
+        // return true/false for added/not added.
+        
+        return false;
 
     } // end add(index,student)
 
