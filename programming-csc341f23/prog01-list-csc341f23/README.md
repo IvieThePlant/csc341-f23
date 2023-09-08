@@ -23,9 +23,9 @@ Learning Outcomes:
 
 General Requirements:
 
-1. Complete the methods that perform the primary operations of adding and finding elements in the List.
-2. Write tests to verify code.
-3. Document all code with Javadocs.
+- Complete the methods as outlined below.
+- Run the tests to make sure the code is working.
+- Document all code with Javadocs and compile the javadocs.
 
 <hr>
 
@@ -41,7 +41,7 @@ It is important to have a shared understanding of the list qualities and how the
 
 #### Javadocs Documentation
 
-4. AS you are coding, add javadocs comments where appropriate. Documentation for javadocs can be found here:
+AS you are coding, add javadocs comments where appropriate. Documentation for javadocs can be found here:
     - [https://www.oracle.com/technetwork/java/javase/documentation/index-137868.html]
     - [https://www.tutorialspoint.com/java/java_documentation.htm]
 
@@ -50,7 +50,7 @@ It is important to have a shared understanding of the list qualities and how the
     - all methods within a class are documented and include @param, @return, etc. as appropriate (the one exception is setters and getters, which are usually self-explanatory thus do not need documentation)
     - most class members/attributes/fields (pick your favorite vocabulary term) are documented. Most, if not all of these, have been done for you.
 
-5. When complete, generate javadocs and inspect your work. To generate javadocs from the command line, create a `docs` folder inside the Lab02 folder. Compile javadoc comments from within that folder. This will generate a collection of web pages. At the command prompt, it looks like this:
+When complete, generate javadocs and inspect your work. To generate javadocs from the command line, create a `docs` folder inside the Lab02 folder. Compile javadoc comments from within that folder. This will generate a collection of web pages. At the command prompt, it looks like this:
   ```
   mkdir docs
   cd docs
@@ -62,19 +62,19 @@ It is important to have a shared understanding of the list qualities and how the
 
 Implement the following ...
 
-1. `StudentList(int capacity)` constructor with a set capacity for data.
-6. `boolean isFull()` determines whether or not there is capacity for more faces.
-7. `boolean isEmpty()` determines whether or not there are any faces in the List.
-8. `boolean isValid(int index)` determines if the given index corresponds to an element stored in the List.
+- `StudentList(int capacity)` constructor with a set capacity for data.
+- `boolean isFull()` determines whether or not there is capacity for more faces.
+- `boolean isEmpty()` determines whether or not there are any faces in the List.
+- `boolean isValid(int index)` determines if the given index corresponds to an element stored in the List.
 
 #### ADD Methods
 
-10. Implement the add method `boolean add(Student student)`.
+- Implement the add method `boolean add(Student student)`.
     - If the structure is not full, add to the end of the list. (The _end_ of the list refers to the last element in the list.)
     - If the structure is full, ignore the request. Do not add anything to the list.
     - Maintain the count.
 
-11. Implement the add method `boolean add(Student student, int index)`.
+- Implement the add method `boolean add(Student student, int index)`.
     - If the index is invalid (i.e. there is not a current element at the specified index), ignore it. Do not add the face to the list.
     - If the structure is not full and the index is valid, add the element at the index indicated.
     - Shift all elements as appropriate BEFORE adding the element to make space for it.
@@ -85,12 +85,12 @@ Implement the following ...
 
 #### SEARCH Methods
 
-9. Implement the `Student get(int index)` method.
+- Implement the `Student get(int index)` method.
     - If the index is valid, return the element at that index. It should not be removed, just returned.
     - If the index is not valid, <del>print an error message and</del> return null.
 
 
-15. Implement the `Student find(String uname)` method.
+- Implement the `Student find(String uname)` method.
     - If the student is in the list, return its index.
     - If the student is not in the list, return -1 (no error message required).
 
@@ -98,7 +98,7 @@ Implement the following ...
 
 #### CONVERT Methods
 
-16. Implement `Student[] toArray()`. It creates an array of the size of the number of elements stored. All elements are copied into the array in the order they appear in the List.
+- Implement `Student[] toArray()`. It creates an array of the size of the number of elements stored. All elements are copied into the array in the order they appear in the List.
 
 <hr>
 
