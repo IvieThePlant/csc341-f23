@@ -22,6 +22,18 @@ public class Student {
             completedCourses.add(majors[rand.nextInt(majors.length)]+(rand.nextInt(300)+100));
         }
     }
+    /** Constructor with all information provided
+     * @param u username 
+     * @param n name of Student
+     * @param m major
+     * @param cc completed courses
+     */
+    public Student(String u, String n, String m, ArrayList<String> cc) {
+        username = u;
+        name = n;
+        m = major;
+        completedCourses = cc;
+    }
 
     public String toString() {
         return username+","+name+","+major+formatCourses();
