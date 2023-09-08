@@ -136,10 +136,10 @@ Please complete the programming assignment submission form and hand that in at t
 
 You can earn a maximum of 5 points on this assignment. Here is the breakdown:
 
-1/2 point for turning it in AND it compiles
-1/2 point for Javadocs complete AND compiled (i.e. docs folder is submitted)
-2 points for passing all the tests of constructor, status, get, and add(student)
-2 points for passing all the tests of add(student, index), find, toArray(). 
+- 1/2 point for turning it in AND it compiles
+- 1/2 point for Javadocs complete AND compiled (i.e. docs folder is submitted)
+- 2 points for passing all the tests of constructor, status, get, and add(student)
+- 2 points for passing all the tests of add(student, index), find, toArray(). 
 
 There is no partial credit for code that is partially complete. A given method is correct only when it passes all the tests for that method. You may earn partial credit for methods that pass all the tests. For example, if you pass all the tests for all but 1 method in the list, you will get partial credit.
 
