@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.io.File;
 import java.util.Scanner;
-
 public class Database {
 
 	Hasher hasher = null;
@@ -16,7 +15,18 @@ public class Database {
 	}
 	
 	private boolean validCredentials(String username, String password) {
-	
+		// Find the username in the ArrayList.
+		Pair thisPair = new Pair(username, password);
+		int thisPairIdx = usernames.indexOf(thisPair);
+
+		// If the username is valid, hash the password entered by the user 
+		//(using the hash method in Hasher). If not, return false.
+		if(thisPairIdx > -1) {
+			
+			// Compare the newly hashed password against the one stored in the ArrayList.
+
+			// If they match, credentials are valid, return true. Else return false.
+		}
 		return false;
 	}
 	
@@ -49,21 +59,25 @@ public class Database {
 		try{
 			File file = new File("students.csv");
 			Scanner scanner = new Scanner(file);
-			ArrayList<Student> students = new ArrayList<Student>();
+
+			// Put each line into new Student and store in array.
+			ArrayList<Student> students = new ArrayList<>();
 			while(scanner.hasNextLine()){
 				String[] dataLine = scanner.nextLine().split(",");
-				for () {
-					
+				ArrayList<String> classes = new ArrayList<>();
+				for (int x = 3; x < dataLine.length; x ++) {
+					classes.add(dataLine[x]);
 				}
-				Student daStudent = new Student(dataLine[0], dataLine[1], dataLine[2], null);
+				Student daStudent = new Student(dataLine[0], dataLine[1], dataLine[2], classes);
+				students.add(daStudent);
 			}
+			scanner.close();
 		}catch(Exception e) {
 			System.out.println(e);
 		}
-		// Put each line into new Student and store in array.
-		
+
 		// return new array
-		return null;
+		return students;
 	}
 
 }
