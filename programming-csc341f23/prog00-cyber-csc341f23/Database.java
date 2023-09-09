@@ -16,16 +16,22 @@ public class Database {
 	
 	private boolean validCredentials(String username, String password) {
 		// Find the username in the ArrayList.
-		Pair thisPair = new Pair(username, password);
-		int thisPairIdx = usernames.indexOf(thisPair);
+		int x = 0;
+		boolean userfound = false;
+		while (x < usernames.length and not userfound) {
+			if (username.equals(usernames[x].get(1)) {
+				userfound = true;
+			} elif {
+				x ++;
+			}
+		}
 
 		// If the username is valid, hash the password entered by the user 
 		//(using the hash method in Hasher). If not, return false.
-		if(thisPairIdx > -1) {
-			
+		if (x < usernames.length) {
 			// Compare the newly hashed password against the one stored in the ArrayList.
-
 			// If they match, credentials are valid, return true. Else return false.
+			if (hasher.hash(password).equals(usernames.))
 		}
 		return false;
 	}
