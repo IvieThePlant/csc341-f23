@@ -90,14 +90,19 @@ import java.awt.event.ActionListener;
             passwordField.setText("");
             System.out.println("ENTERED "+username+" "+password);
 
-            // TODO ************
+            // 
             // Here is where you need to verify if the username+password are correct.
             // Complete the verifyCredentials() function in database and call it here.
+            if (db.validCredentials(username, password)) {
+               // If valid, say hello (using their first name)
+               message.setText("Hello " + db.student(username).name());
+               System.out.println("Hello " + db.student(username).name());
+            } else { 
+               // If not valid, clear the textfields and display a message.
+               message.setText("Username and/or password does not match our records. Try again.");
+            }
 
-            // If valid, say hello (using their first name)
-
-            // If not valid, clear the textfields and display a message.
-            message.setText("Username and/or password does not match our records. Try again.");
+            
 
 
         }
