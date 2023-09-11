@@ -117,6 +117,25 @@ want to use git and a cloud service to manage that, please attend Dr. Larson's o
 (unless you already know how to do this). It should be noted that all repos are public on GitHub
 unless you pay for a membership. On the other hand, all repos on BitBucket are private.
 
+<hr>
+
+# Javadocs
+
+If you are on a Mac, once you install Java you will be able to compile your javadoc comments into html pages.
+If you are on a Windows machine, you have to add the Java bin directory to your path. You do this in the following way:
+
+1. Go to your Explorer. Look inside your Program Files folder and find Java/java-jdk-xx/bin (where xx represents the version number of your install).
+2. Copy the path of the bin folder (from C: to bin)
+3. In Windows search, search for Environmental Variables and choose to edit.
+4. In the pop-up window, choose advanced options.
+5. In the bottom window (if you can, otherwise the top window), select PATH.
+6. Edit the path by choosing NEW.
+7. At the empty line at the bottom, paste the path to the bin folder
+8. Save your changes and open a new command window.
+
+You should now be able to type `javadoc --version` and the OS will recognize the command.
+
+
 
 
 
