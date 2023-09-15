@@ -14,11 +14,16 @@ public class StudentList {
     //              CONSTRUCTORS
     // ____________________________________________________
 
-    /** Constructor creates List with user-specified capacity
+    /** Constructor creates List with user-specified capacity, or DEFAULT_CAPACITY if 0 or negative
      * @param size The capacity of the list (i.e. max number of elements)
      */
     public StudentList(int capacity) {
     	// TODO: create primary data structure for holding students
+        if (capacity > 0) {
+            students = new Student[capacity];
+        } else {
+            students = new Student[DEFAULT_CAPACITY];
+        }
     }
 
     /** Default Constructor */
@@ -48,7 +53,7 @@ public class StudentList {
      */
     public boolean isFull() {
         /** TODO: fix this (can be 1 line of code) */
-        return false;
+        return (count == students.length);
     }
 
     /**
@@ -56,7 +61,7 @@ public class StudentList {
      */
     public boolean isEmpty() {
         /** TODO: fix this (can be 1 line of code) */
-        return false;
+        return (count == 0);
     }
 
     /**
@@ -64,7 +69,7 @@ public class StudentList {
      */
     private Boolean isValid(int index) {
         /** TODO: fix this */
-        return false;
+        return (index > 0 && index < students.length);
     }
 
 
@@ -78,6 +83,14 @@ public class StudentList {
     	/** TODO: write this */
         // Default location for adding a student is at the end of the array
         // Add only if it is not full. Return true/false for added/not added.
+        if (! isFull()) {
+            if (students[count] != null) {
+                System.out.println("Student was at added position. Not good dudes. Not good. :(");
+            }
+            students[count] = student;
+            count ++;
+            return true;
+        }
         return false;
     } // end add(Student)
 
@@ -89,7 +102,18 @@ public class StudentList {
         // All elements must be shifted to make room for the new item.
         // HINT: start shifting at the end until you get to where you want to add
         // return true/false for added/not added.
-        
+        if (! isFull() && isValid(index)){
+            Integer i = students.length;
+            while (i > index) {
+                students[i] = students[i-1];
+                i --;
+            }
+            if (students[i] == null) {
+                count ++;
+            }
+            students[i] = student;
+            return true;
+        }
         return false;
 
     } // end add(index,student)
@@ -105,9 +129,14 @@ public class StudentList {
         // Determine the location of the specified student (its index)
         // Use the equals to match students.
         // Return -1 if it is not in the List
-
+        Integer i = -1;
+        while (i < students.length) {
+            i ++;
+            if (uname.equals(students[i].username())) {
+                return i;
+            }
+        }
         return -1;
-
     } // end locate()
 
     /**
@@ -117,7 +146,10 @@ public class StudentList {
         // Return the student at the given index, if index is valid
         // Return null if index invalid
         // Do not remove the Student, just return it
-
+        if (isValid(index)){
+            return students[index];
+        }
+        System.out.println("No student at index " + index);
         return null;
 
     } // end get()
@@ -133,7 +165,18 @@ public class StudentList {
         // create a new array and copy the contents of the list into the array
         // if the list is empty, return null;
         // else return an array of the exact length as the List
-        
+        if (! isEmpty()) {
+            Student[] newArray = new Student[count];
+            int numCopied = 0;
+            int i = 0;
+            while(numCopied != count)
+                if (students[i] != null) {
+                    newArray[numCopied] = students[i];
+                    numCopied ++;
+                }
+                i ++;
+            return newArray;
+        }
         return null;
 
     } // end toArray()
