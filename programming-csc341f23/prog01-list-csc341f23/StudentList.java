@@ -20,9 +20,9 @@ public class StudentList {
     public StudentList(int capacity) {
     	// TODO: create primary data structure for holding students
         if (capacity > 0) {
-            students = new Student[capacity];
+            this.students = new Student[capacity];
         } else {
-            students = new Student[DEFAULT_CAPACITY];
+            this.students = new Student[DEFAULT_CAPACITY];
         }
     }
 
@@ -69,7 +69,7 @@ public class StudentList {
      */
     private Boolean isValid(int index) {
         /** TODO: fix this */
-        return (index > 0 && index < students.length);
+        return (index >= 0 && index < students.length && students.length != 0);
     }
 
 
@@ -103,7 +103,7 @@ public class StudentList {
         // HINT: start shifting at the end until you get to where you want to add
         // return true/false for added/not added.
         if (! isFull() && isValid(index)){
-            Integer i = students.length;
+            Integer i = students.length - 1;
             while (i > index) {
                 students[i] = students[i-1];
                 i --;
@@ -129,12 +129,14 @@ public class StudentList {
         // Determine the location of the specified student (its index)
         // Use the equals to match students.
         // Return -1 if it is not in the List
-        Integer i = -1;
+        int i = 0;
         while (i < students.length) {
-            i ++;
-            if (uname.equals(students[i].username())) {
-                return i;
+            if (students[i] != null) {
+                if (uname.equals(students[i].username())) {
+                    return i;
+                }
             }
+            i ++;
         }
         return -1;
     } // end locate()
@@ -149,7 +151,6 @@ public class StudentList {
         if (isValid(index)){
             return students[index];
         }
-        System.out.println("No student at index " + index);
         return null;
 
     } // end get()
