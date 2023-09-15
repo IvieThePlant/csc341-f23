@@ -13,6 +13,7 @@ public class StudentList {
 		return 0;
 	} 
 	
+
 	// ____________________________________________________
     //                   SEARCH METHODS
     // ____________________________________________________
@@ -21,6 +22,11 @@ public class StudentList {
 		// look for a match using equals
 		// return the location of the student (if found), else return -1
 		return -1;
+	}
+	
+	boolean replace(Student s1, Student s2) {
+		// find s1 in the List and replace with s2
+		// Use your find method!
 	}
 	
 	// ____________________________________________________
