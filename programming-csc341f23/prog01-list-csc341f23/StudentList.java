@@ -69,7 +69,7 @@ public class StudentList {
      */
     private Boolean isValid(int index) {
         /** TODO: fix this */
-        return (index >= 0 && index < students.length && students.length != 0);
+        return (index >= 0 && index < students.length && students[index] != null);
     }
 
 
@@ -108,10 +108,8 @@ public class StudentList {
                 students[i] = students[i-1];
                 i --;
             }
-            if (students[i] == null) {
-                count ++;
-            }
-            students[i] = student;
+            count ++;
+            students[index] = student;
             return true;
         }
         return false;
@@ -168,18 +166,18 @@ public class StudentList {
         // else return an array of the exact length as the List
         if (! isEmpty()) {
             Student[] newArray = new Student[count];
+            
             int numCopied = 0;
             int i = 0;
-            while(numCopied != count)
-                if (students[i] != null) {
-                    newArray[numCopied] = students[i];
-                    numCopied ++;
-                }
+            while(numCopied < count) 
+                System.out.print(":3 ");
+                newArray[numCopied] = students[i];
+                numCopied ++;
                 i ++;
+            
             return newArray;
         }
         return null;
-
     } // end toArray()
 
     // ____________________________________________________
