@@ -169,12 +169,11 @@ public class StudentList {
             
             int numCopied = 0;
             int i = 0;
-            while(numCopied < count) 
-                System.out.print(":3 ");
+            while(numCopied < count) {
                 newArray[numCopied] = students[i];
                 numCopied ++;
                 i ++;
-            
+            }
             return newArray;
         }
         return null;
