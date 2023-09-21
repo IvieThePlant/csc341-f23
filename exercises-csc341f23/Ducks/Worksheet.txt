@@ -1,0 +1,26 @@
+NAMES: 
+
+1. Dottie. A raucus duck with typical speed that quacks.
+
+State the initial "hi" Message: "Hi dottie. You fly 10 miles per hour and say quack."
+State which values are incorrect for Dottie (name, speed, sound): Name("null"), Personality("null"), 
+State how you fixed anything that was incorrect: added this.name and this.personality to Constructor
+
+2. Mr. T. This mallard is a gentle giant who is fast. He quacks.
+
+State the initial "hi" Message: "Hi Mr T. You fly 10 miles per hour and say quack."
+State which values are incorrect for Mr. T (name, speed, sound): Speed (10)
+State how you fixed anything that was incorrect: called the speed setter in Duck, rather than assignment
+
+3. Zeus. A jaunty lame duck who quacks but cannot fly.
+
+State the initial "hi" Message: "Hi  zeus. You fly 10 miles per hour and say quack"
+State which values are incorrect for Zeus (name, speed, sound): name and personality and speed
+State how you fixed anything that was incorrect: used super Constructor, and setter for speed
+
+
+4. Lemon. A sunny rubber duck who cannot fly. They squeak.
+
+State the initial "hi" Message:
+State which values are incorrect for Lemon (name, speed, sound):
+State how you fixed anything that was incorrect:
