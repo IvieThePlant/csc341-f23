@@ -14,24 +14,26 @@ public class StudentList {
     //                 CONSTRUCTORS
     // ____________________________________________________
 
+	// REDO your constructors so that you have these 4 implemented
+	// Do not forget to add Javadocs comments
 	
-	// Modify constructors so that you have these three additional options:
-
-	// MODIFY your constructor that had capacity as the parameter
-	// giving the option of also specifying the order 
-	public StudentList(Comparator<Student> order, int capacity) {
-        orderBy = order;
-        // ...
+    public StudentList() {
+        this(DEFAULT_CAPACITY);
+        // orderBy is initialized above
     }
     
-    // specify only the order
+    public StudentList(int capacity) {
+        students = new Student[capacity];
+    	// orderBy is initialized above
+    }
+
     public StudentList(Comparator<Student> order) {
     	this(order, DEFAULT_CAPACITY);
     }
-
-  	// default constructor -- MODIFY YOURS
-    public StudentList() {
-        this(orderBy, DEFAULT_CAPACITY);
+    
+ 	public StudentList(Comparator<Student> order, int capacity) {
+ 		this(capacity);
+        orderBy = order;
     }
 
 
