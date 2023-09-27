@@ -34,4 +34,21 @@ public class Comparing {
 		System.out.print("CSC341 before or after MAT165?  ");
 		System.out.println(byLevel.compare(csc341,mat165));
 	}
+	public static Course[] buildList(Course[] courses,Comparator<Course> orderBy) {
+
+		// make a copy for the sorting process
+		Course[] copy = new Course[courses.length];
+		for (int i=0; i<courses.length; i++) {
+			copy[i] = courses[i];
+		}
+
+		// create a new array to store the sorted list
+		Course[] ordered = new Course[courses.length];
+
+		// Move the contents of copy into ordered (in order according to orderBy)
+		// Repeatedly find the minimum value and place in ordered.
+		// Replace the element copied with null
+
+		return ordered;
+	}
 }
