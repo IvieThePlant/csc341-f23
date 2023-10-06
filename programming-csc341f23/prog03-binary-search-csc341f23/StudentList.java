@@ -1,5 +1,16 @@
+import java.util.Comparator;
+
 /** A collection of Student objects listed in no particular order. */
-public class StudentList {
+public class StudentList{
+
+    // Add this member variable at the top of the file
+	/** Comparator for ordering array. Uses compareTo of Student by default */
+	private Comparator<Student> orderBy = new Comparator<Student>() {
+    	@Override
+    	public int compare(Student s1, Student s2) {
+        	return s1.compareTo(s2);
+    	}
+	};
 
     /** Primary structure for storing the collection of Students */
     protected Student[] students;
@@ -13,23 +24,46 @@ public class StudentList {
     // ____________________________________________________
     //              CONSTRUCTORS
     // ____________________________________________________
-
-    /** Constructor creates List with user-specified capacity, or DEFAULT_CAPACITY if 0 or negative
-     * @param size The capacity of the list (i.e. max number of elements)
+	
+    /**
+     * Default Constructor, creates Student array of capacity 100
+     * Uses default Comparator
      */
-    public StudentList(int capacity) {
-        if (capacity > 0) {
-            this.students = new Student[capacity];
-        } else {
-            this.students = new Student[DEFAULT_CAPACITY];
-        }
-    }
-
-    /** Default Constructor */
     public StudentList() {
         this(DEFAULT_CAPACITY);
+        // orderBy is initialized above
     }
     
+    /**
+     * Creates Student array of given capacity
+     * Uses default Comparator
+     * @param capacity for Student array
+     */
+    public StudentList(int capacity) {
+        students = new Student[capacity];
+    	// orderBy is initialized above
+    }
+
+    /**
+     * Creates Student array of default capacity (100)
+     * Uses given Comparator to order
+     * @param order Comparator to sort Student array by
+     */
+    public StudentList(Comparator<Student> order) {
+    	this(order, DEFAULT_CAPACITY);
+    }
+    
+    /**
+     * Creates Student array of given capacity
+     * Uses given Comparator to order
+     * @param order Comparator to sort Student array by
+     * @param capacity for Sudent array
+     */
+ 	public StudentList(Comparator<Student> order, int capacity) {
+ 		this(capacity);
+        orderBy = order;
+    }
+
     // ____________________________________________________
 
     @Override
@@ -73,27 +107,49 @@ public class StudentList {
     // ____________________________________________________
     //                   ADD METHODS
     // ____________________________________________________
-
+	
     /** Adds a student to the end of the list
      * @param student Student to be added to StudentList
      * @return True if added, else false
      */
     public boolean add(Student student) {
-        // Default location for adding a student is at the end of the array
+        // Add to Student array, maintaining list order using orderBy
         // Add only if it is not full. Return true/false for added/not added.
         if (! isFull()) {
-            students[count] = student;
+            // If array is empty, add at first index
+            if (count == 0) {
+                students[0] = student;
+            } else {
+                // Find first index with greater student, or count if no greater student found
+                int idx = 0;
+                while (orderBy.compare(students[idx], student) <= 0 && idx < count) {
+                    idx ++;
+                }
+                
+                // Insert student at idx, moving rest of objects to the right
+                Student save1 = student;
+                Student save2 = null;
+                for (; idx < count; idx ++) {
+                    save2 = students[idx];
+                    students[idx] = save1;
+                    save1 = save2;
+                }
+            }
+            // Update count and return sucsess
             count ++;
             return true;
+
         }
         return false;
     } // end add(Student)
 
-    /** Adds student at given index if valid. Previous student, as well as all folowing students, get shifted over one
+    
+    /** COMMENTED OUT
+     * Adds student at given index if valid. Previous student, as well as all folowing students, get shifted over one
      * @param student Student to be added to StudentList
      * @param index Index of desired location of student
      * @return True if added, else false
-     */
+    
     public boolean add(Student student, int index) {
         // Add at index only if it is a valid index AND the array isn't full.
         // All elements must be shifted to make room for the new item.
@@ -112,6 +168,7 @@ public class StudentList {
         return false;
 
     } // end add(index,student)
+    */
 
     /** Takes given students and adds them as long StudentList has room
      * @param array Array of students to be added
@@ -199,6 +256,20 @@ public class StudentList {
         return false;
 	} // end replace(s1,s2)
 
+	public int findBS(Student student) {
+		// TODO
+        // Use an iterative Binary Search to find the student.
+		// Ordering is based on the Comparator.
+
+        // number of iterations = celing of x
+        //  2^x = length 
+        int iterations = (int)Math.ceil(Math.log(students.length));
+        
+        
+		return -1;
+	}
+	
+
     // ____________________________________________________
     //                   CONVERT METHODS
     // ____________________________________________________
@@ -224,6 +295,15 @@ public class StudentList {
         }
         return null;
     } // end toArray()
+
+	public Student[] sublist(String start, String end) {
+		// TODO
+        // Create an array of students (in order)
+		// that fall between start and end EXCLUSIVE of these.
+		// Use the Comparator to establish inclusion within the range.
+		// return null if no values are in between
+		return null;
+	}
 
     // ____________________________________________________
     //                   REMOVE METHODS
