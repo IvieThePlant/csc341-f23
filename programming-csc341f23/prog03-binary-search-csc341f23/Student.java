@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.lang.Comparable;
 
-public class Student {
+public class Student implements Comparable<Student>{
     public String[] majors = { "CSC", "MAT", "DST", "MIS", "BIO", "PHY", "CHE" };
     private String username;
     private String name;
@@ -46,7 +47,7 @@ public class Student {
         }
         return toPrint;
     }
-    
+
     @Override
     public boolean equals(Object other) {
     	if (null==other) {
@@ -58,6 +59,12 @@ public class Student {
     	Student s = (Student) other;
     	// usernames are unique, so this should be sufficient to test equivalency
     	return username.equals(s.username);
+    }
+
+    // TODO
+    @Override
+    public int compareTo(Student s2) {
+        return -1;
     }
     
     public String username() { return username; }
