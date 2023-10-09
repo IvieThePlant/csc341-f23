@@ -3,7 +3,6 @@ import java.util.Comparator;
 /** A collection of Student objects listed in no particular order. */
 public class StudentList{
 
-    // Add this member variable at the top of the file
 	/** Comparator for ordering array. Uses compareTo of Student by default */
 	private Comparator<Student> orderBy = new Comparator<Student>() {
     	@Override
@@ -81,21 +80,24 @@ public class StudentList{
     //              LIST STATUS METHODS
     // ____________________________________________________
 
-    /** Checks if StudentList is full
+    /** 
+     * Checks if StudentList is full
      * @return True if StudentList is full, else false
      */
     public boolean isFull() {
         return (count == students.length);
     }
 
-    /** Checks if StudentList is empty
+    /** 
+     * Checks if StudentList is empty
      * @return True if there is 0 items in the list, else false
      */
     public boolean isEmpty() {
         return (count == 0);
     }
 
-    /** Checks if given index is valid, meaning it is within range and has a student at index
+    /** 
+     * Checks if given index is valid, meaning it is within range and has a student at index
      * @param index The index to be checked in StudentList
      * @return True if in range and has student at index, else false
      */
@@ -108,39 +110,39 @@ public class StudentList{
     //                   ADD METHODS
     // ____________________________________________________
 	
-    /** Adds a student to the end of the list
+    /** 
+     * Adds a student to the end of the list
      * @param student Student to be added to StudentList
      * @return True if added, else false
      */
     public boolean add(Student student) {
         // Add to Student array, maintaining list order using orderBy
         // Add only if it is not full. Return true/false for added/not added.
-        if (! isFull()) {
-            // If array is empty, add at first index
-            if (count == 0) {
-                students[0] = student;
-            } else {
-                // Find first index with greater student, or count if no greater student found
-                int idx = 0;
-                while (orderBy.compare(students[idx], student) <= 0 && idx < count) {
-                    idx ++;
-                }
-                
-                // Insert student at idx, moving rest of objects to the right
-                Student save1 = student;
-                Student save2 = null;
-                for (; idx < count; idx ++) {
-                    save2 = students[idx];
-                    students[idx] = save1;
-                    save1 = save2;
-                }
-            }
-            // Update count and return sucsess
-            count ++;
-            return true;
-
+        if (isFull()) { 
+            return false;
         }
-        return false;
+        // If array is empty, add at first index
+        if (count == 0) {
+            students[0] = student;
+        } else {
+            // Find first index with greater student, or count if no greater student found
+            int idx = 0;
+            while (orderBy.compare(students[idx], student) <= 0 && idx < count) {
+                idx ++;
+            }
+                
+            // Insert student at idx, moving rest of objects to the right
+            Student save1 = student;
+            Student save2 = null;
+            for (; idx < count; idx ++) {
+                save2 = students[idx];
+                students[idx] = save1;
+                save1 = save2;
+            }
+        }
+        // Update count and return sucsess
+        count ++;
+        return true;  
     } // end add(Student)
 
     
@@ -170,7 +172,8 @@ public class StudentList{
     } // end add(index,student)
     */
 
-    /** Takes given students and adds them as long StudentList has room
+    /** 
+     * Takes given students and adds them as long StudentList has room
      * @param array Array of students to be added
      * @return Count of students from array added
      */
@@ -192,7 +195,8 @@ public class StudentList{
     //                   SEARCH METHODS
     // ____________________________________________________
 
-    /** Attempts to find index of student with given username
+    /** 
+     * Attempts to find index of student with given username
      * @param uname Username of desired student
      * @return Index of fitst student with matching username, else -1 if not found
      */
@@ -210,7 +214,8 @@ public class StudentList{
         return -1;
     } // end find(uname)
 
-    /** Attempts to return student at given index
+    /** 
+     * Attempts to return student at given index
      * @param index Index of desired student
      * @return Desired student, else null if invalid index
      */
@@ -225,7 +230,8 @@ public class StudentList{
 
     } // end get(index)
 
-    /** Attempts to find index of matching student
+    /** 
+     * Attempts to find index of matching student
      * @param student Student being searched for
      * @return Index of student if found, else -1
      */
@@ -240,7 +246,8 @@ public class StudentList{
 		return -1;
 	} // end find(student)
 	
-    /** Attempts to replace first student with second student
+    /** 
+     * Attempts to replace first student with second student
      * @param s1 Student to be replaced
      * @param s2 Student to replace with
      * @return True if replaced. False if s1 not found
@@ -261,14 +268,33 @@ public class StudentList{
         // Use an iterative Binary Search to find the student.
 		// Ordering is based on the Comparator.
 
-        // number of iterations = celing of x
-        //  2^x = length 
-        int iterations = (int)Math.ceil(Math.log(students.length));
-        
-        
+        // Number of iterations = celing of x, where 2^x = count 
+        int iterations = (int)Math.ceil(Math.log(count));
+
+        // Start with comparing whole list
+        int start = 0;
+        int end = count - 1;
+        int mid;
+
+        // Find the middle of our list. Compare student to value at middle
+        // If value is larger
+        while (iterations > 0) {
+            mid = (start + end)/2;
+            if (orderBy.compare(student, students[mid]) == 0) {
+                return mid;
+            }
+            if (orderBy.compare(student, students[mid]) < 0) {
+                end = mid;
+            }
+            if (orderBy.compare(student, students[mid]) > 0) {
+                start = mid + 1;
+            }
+            if (start > end) {
+                return -1;
+            }
+        }
 		return -1;
 	}
-	
 
     // ____________________________________________________
     //                   CONVERT METHODS
