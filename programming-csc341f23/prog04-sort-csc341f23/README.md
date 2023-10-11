@@ -1,5 +1,5 @@
 ### Programming Assignment 04 : LIST Sorting and Recursive Binary Search
-#### Due Thursday, October 21 end-of-day (link open until Friday, end-of-day)
+#### Due Thursday, October 12 end-of-day (link open until Friday, end-of-day)
 #### Submit a single zipped file to Moodle
 
 In this lab, you will continue your work of the previous programming assignment on the ADT List and Binary Search. The important distinction is that you will use recursion to implement Binary Search and you will give the user the opportunity to reorder according to a different criteria.
