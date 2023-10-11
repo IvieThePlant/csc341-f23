@@ -435,14 +435,16 @@ public class StudentList{
         int startIdx = findBS(start);
         int endIdx = findBS(start);
 
-        // If starting index wasn't found, find where the index WOULD be
+        // If starting index wasn't found, find where the index WOULD be. (Range: -1 to count-2)
         if(startIdx == -1) {
+            startIdx ++;
             boolean found = false;
             while(startIdx < count && !found) {
-                if(orderBy.compare(students[startIdx+1], start) < 0) {
+                if(orderBy.compare(students[startIdx], start) < 0) {
                     startIdx ++;
                 } else {
                     found = true;
+                    startIdx --;
                 }
             }
         }
@@ -452,13 +454,26 @@ public class StudentList{
             return null;
         }
 
-        // If ending index wasn't found, find where the index WOULD be
+        // If ending index wasn't found, find where the index WOULD be starting at found startIdx (Range: startIdx to count)
         if(endIdx == -1) {
+            endIdx = startIdx;
             boolean found = false;
-            while 
+            while(endIdx < count && !found) {
+                if(orderBy.compare(students[endIdx], end) < 0) {
+                    endIdx ++;
+                } else {
+                    found = true;
+                }
+            }
         }
 
-        return null;
+        // Check indecies for null conditions (overlap, 1 difference, same)
+        if (!(endIdx - startIdx > 1)) {
+            return null;
+        }
+        
+        // make sublist of one in from indecies
+        return sublist(startIdx+1, endIdx-1);
     }
 
     // ____________________________________________________
