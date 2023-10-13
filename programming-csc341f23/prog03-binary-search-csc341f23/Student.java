@@ -61,10 +61,14 @@ public class Student implements Comparable<Student>{
     	return username.equals(s.username);
     }
 
-    // TODO
+    /**
+     * Compares this student to given student based off usernames
+     * @param s2 Student to compare to
+     * @return -1 if this less than given student. 1 if more. 0 if equal
+     */
     @Override
     public int compareTo(Student s2) {
-        return -1;
+        return this.username.compareTo(s2.username);
     }
     
     public String username() { return username; }
@@ -80,6 +84,6 @@ public class Student implements Comparable<Student>{
 
 
     static String[] names = { 
-        "Amy", "Erik", "Pavel", "Matt", "Abdi", "Sadaq", "Miguel", "Jocelyn", "Adnan", "Luis", "Emily", "Drew", "Everett", "Ayden", "Walta", "Joshua", "Keiran", "Elias", "Faiaz", "Sergio", "Ivan", "Max", "Mohamed", "Awal", "Chelsey", "Johnny", "Pao", "Jaron", "Liban", "Taha", "Tenley", "Josh", "Xeng", "Gabriel", "Asli", "Hodan", "Jamila", "Amaal", "Ari", "Quinn", "Mohamud", "Derek", "Dori", "Guleid", "Yuva", "Rudwan", "Aisha", "Hamsa", "Ethan", "Talib", "Kwadwo", "Melissa", "Jake", "Chris", "Skyler", "Zach", "Liban", "Fatima", "Kodjo", "Corey", "Kebba", "Hannah", "Eric", "Jeffrey", "Esmeralda", "Leah", "Halah", "Krystal", "Rahma", "Romeo", "Ivie", "Andy", "Karen", "Elisha", "Khadro", "Adna", "Sundus", "Mohamed", "Ivan", "Timothy", "Vinny", "Mayali", "Betelehem", "Ermais", "Matt", "Collin", "Adnan", "Tommy", "Moua", "Long", "Miriam", "Keenan", "Sumayyah", "Nathan", "Matthew", "Angel", "Vivika", "Thor", "Brandon", "Andy", "Erica", "Bailey", "Ariana", "Linus", "Elliott", "Vincent", "Josh", "Sean", "Katelynn", "Saryn", "Bjorn", "Doua", "Amina", "Muna", "Xera", "Khaalid", "Mitchell", "Zakaria", "Leban", "Chris", "Khalid", "Ryan", "Alinase", "Brian", "Anna", "Zak", "Nikita", "Luke", "Ridwan", "Najma", "Brooklyn", "Ella", "Ceazar", "Mackenzie", "Stephanie", "Myles", "Christopher", "Kevin", "Jason", "Justin", "Odin", "Katie", "Jacob", "Lucy", "Vincent", "Najma", "Ly" 
+        "Pikuniku", "Hornfels", "Ivie", "Amy", "Erik", "Pavel", "Matt", "Abdi", "Sadaq", "Miguel", "Jocelyn", "Adnan", "Luis", "Emily", "Drew", "Everett", "Ayden", "Walta", "Joshua", "Keiran", "Elias", "Faiaz", "Sergio", "Ivan", "Max", "Mohamed", "Awal", "Chelsey", "Johnny", "Pao", "Jaron", "Liban", "Taha", "Tenley", "Josh", "Xeng", "Gabriel", "Asli", "Hodan", "Jamila", "Amaal", "Ari", "Quinn", "Mohamud", "Derek", "Dori", "Guleid", "Yuva", "Rudwan", "Aisha", "Hamsa", "Ethan", "Talib", "Kwadwo", "Melissa", "Jake", "Chris", "Skyler", "Zach", "Liban", "Fatima", "Kodjo", "Corey", "Kebba", "Hannah", "Eric", "Jeffrey", "Esmeralda", "Leah", "Halah", "Krystal", "Rahma", "Romeo", "Ivie", "Andy", "Karen", "Elisha", "Khadro", "Adna", "Sundus", "Mohamed", "Ivan", "Timothy", "Vinny", "Mayali", "Betelehem", "Ermais", "Matt", "Collin", "Adnan", "Tommy", "Moua", "Long", "Miriam", "Keenan", "Sumayyah", "Nathan", "Matthew", "Angel", "Vivika", "Thor", "Brandon", "Andy", "Erica", "Bailey", "Ariana", "Linus", "Elliott", "Vincent", "Josh", "Sean", "Katelynn", "Saryn", "Bjorn", "Doua", "Amina", "Muna", "Xera", "Khaalid", "Mitchell", "Zakaria", "Leban", "Chris", "Khalid", "Ryan", "Alinase", "Brian", "Anna", "Zak", "Nikita", "Luke", "Ridwan", "Najma", "Brooklyn", "Ella", "Ceazar", "Mackenzie", "Stephanie", "Myles", "Christopher", "Kevin", "Jason", "Justin", "Odin", "Katie", "Jacob", "Lucy", "Vincent", "Najma", "Ly" 
     };
 }
