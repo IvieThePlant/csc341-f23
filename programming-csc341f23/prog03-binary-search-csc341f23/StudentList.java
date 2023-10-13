@@ -326,18 +326,19 @@ public class StudentList {
      * @return Removed student. Null if index is not valid
      */
     public Student remove(int index) {
-        // if the index is valid, remove the student and return it
+        // If not a valid index, return null
         if (isValid(index)) {
-            Student removeStudent = students[index];
-            for (int i = index; i < count - 1; i++) {
-                students[i] = students[i + 1];
-            }
-            students[count - 1] = null;
-            count--;
-            return removeStudent;
+            return null;
         }
-        // if not valid, return null
-        return null;
+
+        // Remove the student and return it
+        Student removeStudent = students[index];
+        for (int i = index; i < count - 1; i++) {
+            students[i] = students[i + 1];
+        }
+        students[count - 1] = null;
+        count--;
+        return removeStudent;
     } // end remove(index)
 
     /**
@@ -348,15 +349,16 @@ public class StudentList {
      */
     public boolean remove(Student student) {
         // search for the student
-        // if found, remove them and return true, else false
-        // Use your find method and your other remove method!
-        // no need to write the same code twice!
         int i = find(student);
+
+        // If not found, return false
         if (i != -1) {
-            remove(i);
-            return true;
+            return false;
         }
-        return false;
+
+        // If found, remove them and return true
+        remove(i);
+        return true;
     } // end remove(student)
 
     /**
