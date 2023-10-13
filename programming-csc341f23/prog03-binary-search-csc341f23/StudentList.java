@@ -89,7 +89,7 @@ public class StudentList {
      */
     public boolean isFull() {
         return (count == students.length);
-    }
+    } // end isFull()
 
     /**
      * Checks if StudentList is empty
@@ -98,7 +98,7 @@ public class StudentList {
      */
     public boolean isEmpty() {
         return (count == 0);
-    }
+    } // end isEmpty()
 
     /**
      * Checks if given index is valid, meaning it is within range and has a student
@@ -109,7 +109,7 @@ public class StudentList {
      */
     private Boolean isValid(int index) {
         return (index >= 0 && index < students.length && students[index] != null);
-    }
+    } // end isValid()
 
     // ____________________________________________________
     // ADD METHODS
@@ -277,8 +277,13 @@ public class StudentList {
         return false;
     } // end replace(s1,s2)
 
+    /**
+     * Attempts to find a student using Binary Search
+     * 
+     * @param student Student to look for
+     * @return Index of found student, or -1 if not found
+     */
     public int findBS(Student student) {
-        // TODO
         // Use an iterative Binary Search to find the student.
         // Ordering is based on the Comparator.
 
@@ -308,7 +313,7 @@ public class StudentList {
             }
         }
         return -1;
-    }
+    } // end findBS(student)
 
     // ____________________________________________________
     // REMOVE METHODS
@@ -376,41 +381,45 @@ public class StudentList {
      * @return New array, else null if
      */
     public Student[] toArray() {
-        // create a new array and copy the contents of the list into the array
         // if the list is empty, return null;
-        // else return an array of the exact length as the List
-        if (!isEmpty()) {
-            Student[] newArray = new Student[count];
-
-            int numCopied = 0;
-            int i = 0;
-            while (numCopied < count) {
-                newArray[numCopied] = students[i];
-                numCopied++;
-                i++;
-            }
-            return newArray;
+        if (isEmpty()) {
+            return null;
         }
-        return null;
+
+        // create a new array and copy the contents of the list into the array
+        Student[] newArray = new Student[count];
+        int numCopied = 0;
+        int i = 0;
+        while (numCopied < count) {
+            newArray[numCopied] = students[i];
+            numCopied++;
+            i++;
+        }
+
+        // else return an array of the exact length as the List
+        return newArray;
     } // end toArray()
 
     /**
      * Attempts to put all List elements into array, but only if all will fit
      * 
-     * @param toFill Array to fill with students
-     * @return Number of students added to toFill
+     * @param toFill Array to fill with Students
+     * @return Number of Students added to toFill
      */
     public int toArray(Student[] toFill) {
-        // if all List elements fit in toFill, copy them into the array.
-        // if they do not all fit, copy nothing.
-        // return the number of elements copied into the toFill array.
-        if (count <= toFill.length) {
-            for (int i = 0; i < count; i++) {
-                toFill[i] = students[i];
-            }
-            return count;
+        // If all List elements fit in toFill, copy them into the array. Else, copy
+        // nothing.
+        if (count > toFill.length) {
+            return 0;
         }
-        return 0;
+
+        // Copy Students over
+        for (int i = 0; i < count; i++) {
+            toFill[i] = students[i];
+        }
+
+        // Return the number of elements copied into the toFill array.
+        return count;
     } // end toArray(toFill)
 
     /**
@@ -421,71 +430,90 @@ public class StudentList {
      * @return New sublist as array. Null if start or end not valid
      */
     public Student[] sublist(int start, int end) {
-        // if the indices are invalid, return null
-        // create a new Student array the size of the sublist.
-        // Copy elements from index start to end (inclusive) into the array.
-        if (isValid(start) && isValid(end)) {
-            Student[] newStudentArray = new Student[end - start + 1];
-            for (int i = 0; i + start <= end; i++) {
-                newStudentArray[i] = students[i + start];
-            }
-            return newStudentArray;
+        // If the indices are invalid, return null
+        if (!(isValid(start) && isValid(end))) {
+            return null;
         }
-        return null;
+
+        // Create a new Student array the size of the sublist.
+        Student[] newStudentArray = new Student[end - start + 1];
+
+        // Copy elements from index start to end (inclusive) into the array.
+        for (int i = 0; i + start <= end; i++) {
+            newStudentArray[i] = students[i + start];
+        }
+        return newStudentArray;
     } // end sublist(start,end)
 
+    /**
+     * Creates an ordered array from given starting username, to given ending
+     * username (EXCLUSIVE)
+     * 
+     * @param start Username of start of sublist
+     * @param end   Username of end of sublist
+     * @return Student array sublist, null if no values inbetween
+     */
     public Student[] sublist(String start, String end) {
-        // TODO
-        // Create an array of students (in order)
-        // that fall between start and end EXCLUSIVE of these.
-        // Use the Comparator to establish inclusion within the range.
         // return null if no values are in between
+        if (start.compareTo(end) >= 0) {
+            return null;
+        }
+
+        // Create students with accociated username
         Student s1 = new Student(start);
         Student s2 = new Student(end);
-        sublist(s1, s2);
-        return null;
-    }
 
+        // find the sublist between those two students
+        return sublist(s1, s2);
+    } // end sublist(start,end)
+
+    /**
+     * Creates an ordered array to hold elements between starting Student and ending
+     * Student (EXCLUSIVE)
+     * Given Students do not need to exist in the list
+     * 
+     * @param start Starting Student for sublist
+     * @param end   Ending Student for sublist
+     * @return Student array sublist, null if no values inbetween
+     */
     public Student[] sublist(Student start, Student end) {
-        // Create a new array to hold all the elements between start and end. 
-        // You will have to search the list to determine the start and end index. 
-        // The order is based on the Comparator. The students do not need to exist in the list! 
-        // Importantly, you have to determine the size of the array, 
-        // then iterate over the sublist elements again to put them into the new array 
-        // (or better yet, use the other sublist method!). 
-        // If there are no elements between, return null. 
-        // This range is EXCLUSIVE of the start and the end values.
+        // If there are no elements between, return null.
+        if (orderBy.compare(start, end) >= 0) {
+            return null;
+        }
 
         // Try to quick find start and end indicies using find
         int startIdx = findBS(start);
         int endIdx = findBS(start);
 
-        // If starting index wasn't found, find where the index WOULD be. (Range: -1 to count-2)
-        if(startIdx == -1) {
-            startIdx ++;
+        // If starting index wasn't found, find where the index WOULD be. (Range: -1 to
+        // count-2)
+        if (startIdx == -1) {
+            startIdx++;
             boolean found = false;
-            while(startIdx < count && !found) {
-                if(orderBy.compare(students[startIdx], start) < 0) {
-                    startIdx ++;
+            while (startIdx < count && !found) {
+                if (orderBy.compare(students[startIdx], start) < 0) {
+                    startIdx++;
                 } else {
                     found = true;
-                    startIdx --;
+                    startIdx--;
                 }
             }
         }
 
         // If no values are greater than start, return null
-        if(startIdx >= count-1) {
+        if (startIdx >= count - 1) {
             return null;
         }
 
-        // If ending index wasn't found, find where the index WOULD be starting at found startIdx (Range: startIdx to count)
-        if(endIdx == -1) {
+        // If ending index wasn't found, find where the index WOULD be starting at found
+        // startIdx (Range: startIdx to count)
+        if (endIdx == -1) {
             endIdx = startIdx;
             boolean found = false;
-            while(endIdx < count && !found) {
-                if(orderBy.compare(students[endIdx], end) < 0) {
-                    endIdx ++;
+            while (endIdx < count && !found) {
+                if (orderBy.compare(students[endIdx], end) < 0) {
+                    endIdx++;
                 } else {
                     found = true;
                 }
@@ -493,12 +521,12 @@ public class StudentList {
         }
 
         // Check indecies for null conditions (overlap, 1 difference, same)
-        if (!(endIdx - startIdx > 1)) {
+        if (!(endIdx - startIdx > 1) || (startIdx > endIdx)) {
             return null;
         }
-        
+
         // make sublist of one in from indecies
-        return sublist(startIdx+1, endIdx-1);
+        return sublist(startIdx + 1, endIdx - 1);
     }
 
     // ____________________________________________________
