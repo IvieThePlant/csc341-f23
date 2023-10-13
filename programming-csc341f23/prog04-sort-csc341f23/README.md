@@ -69,13 +69,13 @@ Start the implementation by duplicating the folder prog03-bst-csc341f23 in your 
 
 1. Create the method `public void reorder(Comparator<Student> order)`, which is a setter for orderBy. ADDITIONALLY, you must reorder the list based on this new Comparator.
 
-1. Create the method `public int min()` that returns the min value according to the current ordering. DO NOT ITERATE over the list to find this value -- it is not necessary.
+1. Create the method `public Student min()` that returns the min value according to the current ordering. DO NOT ITERATE over the list to find this value -- it is not necessary.
 
-1. Create the method `public int max()` that returns the max value according to the current ordering. DO NOT ITERATE over the list to find this value -- it is not necessary.
+1. Create the method `public Student max()` that returns the max value according to the current ordering. DO NOT ITERATE over the list to find this value -- it is not necessary.
 
-1. Create the method `public int min(Comparator<student> order)` that returns the min value according to the passed Comparator. 
+1. Create the method `public Student min(Comparator<student> order)` that returns the min value according to the passed Comparator. 
 
-1. Create the method `public int max(Comparator<student> order)` that returns the max value according to the passed Comparator. 
+1. Create the method `public Student max(Comparator<student> order)` that returns the max value according to the passed Comparator. 
 
 #### CONVERT Methods
     
