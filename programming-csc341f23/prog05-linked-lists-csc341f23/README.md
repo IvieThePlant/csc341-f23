@@ -16,7 +16,9 @@ Keep your code CLEAN and organized.
 It is your responsibility to test your code. 
 
 ```
-Special Constraints: You may not use for loops. Only while loops. 
+Special Constraints:
+- You may not use for loops. Only while loops.
+- You may not use the count as a stopping condition! 
 ```
 
 <hr>
