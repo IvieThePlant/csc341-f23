@@ -152,7 +152,7 @@ public class StudentList {
     } // end add(Student)
 
     /**
-     * COMMENTED OUT
+     * COMMENTED OUT add(Student student,int index)
      * Adds student at given index if valid. Previous student, as well as all
      * folowing students, get shifted over one
      * 
@@ -448,26 +448,27 @@ public class StudentList {
     } // end sublist(start,end)
 
     /**
+     * COMMENTED OUT - sublist(String start,String end)
      * Creates an ordered array from given starting username, to given ending
      * username (EXCLUSIVE)
      * 
      * @param start Username of start of sublist
      * @param end   Username of end of sublist
      * @return Student array sublist, null if no values inbetween
+     *         public Student[] sublist(String start, String end) {
+     *         // return null if no values are in between
+     *         if (start.compareTo(end) >= 0) {
+     *         return null;
+     *         }
+     * 
+     *         // Create students with accociated username
+     *         Student s1 = new Student(start);
+     *         Student s2 = new Student(end);
+     * 
+     *         // find the sublist between those two students
+     *         return sublist(s1, s2);
+     *         } // end sublist(start,end)
      */
-    public Student[] sublist(String start, String end) {
-        // return null if no values are in between
-        if (start.compareTo(end) >= 0) {
-            return null;
-        }
-
-        // Create students with accociated username
-        Student s1 = new Student(start);
-        Student s2 = new Student(end);
-
-        // find the sublist between those two students
-        return sublist(s1, s2);
-    } // end sublist(start,end)
 
     /**
      * Creates an ordered array to hold elements between starting Student and ending
