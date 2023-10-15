@@ -317,6 +317,15 @@ public class StudentList {
         return -1;
     } // end findBS(student)
 
+    // TODO: write findRecurse
+    public int findRecurse(Student student) {
+        return -1;
+    }
+
+    private int findRecurse(Student student, int start, int end) {
+        return -1;
+    }
+
     // ____________________________________________________
     // REMOVE METHODS
     // ____________________________________________________
@@ -533,6 +542,45 @@ public class StudentList {
 
         // make sublist of one in from indecies
         return sublist(startIdx + 1, endIdx - 1);
+    } // end sublist(start,end)
+
+    // TODO: Write toArray
+    public Student[] toArray(Comparator<Student> order) {
+        return null;
+    }
+
+    // TODO: Write findAll
+    public Student[] findAll(String major) {
+        return null;
+    }
+
+    // ____________________________________________________
+    // ORDERING METHODS
+    // ____________________________________________________
+
+    // TODO: Write reorder
+    public void reorder(Comparator<Student> order) {
+
+    }
+
+    // TODO: Write min
+    public Student min() {
+        return null;
+    }
+
+    // TODO: Write max()
+    public Student max() {
+        return null;
+    }
+
+    // TODO: Write min(Comparator<Student>)
+    public Student min(Comparator<Student> order) {
+        return null;
+    }
+
+    // TODO: Write max(Comparator<Student>)
+    public Student max(Comparator<Student> order) {
+        return null;
     }
 
     // ____________________________________________________
