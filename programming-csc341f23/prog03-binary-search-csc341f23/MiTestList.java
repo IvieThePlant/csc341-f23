@@ -40,67 +40,66 @@ public class MiTestList {
 		System.out.println("Def, ordered "+listNameDef.capacity());
 		
 		StudentList listNameCap = new StudentList(byName,5);
-		System.out.println("Cap, ordered"+listNameCap.capacity());
+		System.out.println("Cap, ordered "+listNameCap.capacity());
 
 		System.out.println("\n_________________________ADD DEFAULT ORDER ");
 		StudentList listA = new StudentList(5);
-		listA.add(s4);
-		listA.add(s3);
-		listA.add(s1);
-		listA.add(s5);
-		listA.add(s2);
+		Assert.assertEquals(true,listA.add(s4),"Failed to add u04 - Ida");
+		Assert.assertEquals(true,listA.add(s3),"Failed to add u03 - La");
+		Assert.assertEquals(true,listA.add(s1),"Failed to add u01 - Zelda");
+		Assert.assertEquals(true,listA.add(s5),"Failed to add u05 - Boo");
+		Assert.assertEquals(true,listA.add(s2),"Failed to add u02 - Que");
 		System.out.println("USER ORDERED\n"+listA);
-		
 		
 		System.out.println("\n_________________________ADD NAME ORDER ");
 		StudentList listB = new StudentList(byName,5);
-		listB.add(s4);
-		listB.add(s3);
-		listB.add(s1);
-		listB.add(s5);
-		listB.add(s2);
+		Assert.assertEquals(true,listB.add(s4),"Failed to add u04 - Ida");
+		Assert.assertEquals(true,listB.add(s3),"Failed to add u03 - La");
+		Assert.assertEquals(true,listB.add(s1),"Failed to add u01 - Zelda");
+		Assert.assertEquals(true,listB.add(s5),"Failed to add u05 - Boo");
+		Assert.assertEquals(true,listB.add(s2),"Failed to add u02 - Que");
 		System.out.println("NAME ORDERED\n"+listB);
 		
 		System.out.println("\n_________________________BINARY SEARCH USER ");
 		StudentList listC = new StudentList(5);
-		listC.add(s1);
-		listC.add(s2);
-		listC.add(s3);
-		listC.add(s4);
-		listC.add(s5);
+		Assert.assertEquals(true,listC.add(s1),"Failed to add u01 - Zelda");
+		Assert.assertEquals(true,listC.add(s2),"Failed to add u02 - Que");
+		Assert.assertEquals(true,listC.add(s3),"Failed to add u03 - La");
+		Assert.assertEquals(true,listC.add(s4),"Failed to add u04 - Ida");
+		Assert.assertEquals(true,listC.add(s5),"Failed to add u05 - Boo");
 		int result = listC.findBS(s2);
-		System.out.println("s2 at "+result);
+		System.out.println("s2 at "+result+" (1 Expected)");
 		result = listC.findBS(s3);
-		System.out.println("s3 at "+result);
+		System.out.println("s3 at "+result+" (2 Expected)");
 		result = listC.findBS(s4);
-		System.out.println("s4 at "+result);
+		System.out.println("s4 at "+result+" (3 Expected)");
 		result = listC.findBS(x);
-		System.out.println("x not in at "+result);
+		System.out.println("x not in at "+result+" (-1 Expected)");
 		
 		System.out.println("\n_________________________BINARY SEARCH NAME ");
 		StudentList listD = new StudentList(byName,5);
-		listD.add(s1);
-		listD.add(s2);
-		listD.add(s3);
-		listD.add(s4);
-		listD.add(s5);
+		Assert.assertEquals(true,listD.add(s1),"Failed to add u01 - Zelda");
+		Assert.assertEquals(true,listD.add(s2),"Failed to add u02 - Que");
+		Assert.assertEquals(true,listD.add(s3),"Failed to add u03 - La");
+		Assert.assertEquals(true,listD.add(s4),"Failed to add u04 - Ida");
+		Assert.assertEquals(true,listD.add(s5),"Failed to add u05 - Boo");
 		result = listD.findBS(s2);
-		System.out.println("s2 at "+result);
+		System.out.println("s2 at "+result+" (3 Expected)");
 		result = listD.findBS(s3);
-		System.out.println("s3 at "+result);
+		System.out.println("s3 at "+result+" (2 Expected)");
 		result = listD.findBS(s4);
-		System.out.println("s4 at "+result);
+		System.out.println("s4 at "+result+" (1 Expected)");
 		result = listD.findBS(x);
-		System.out.println("x not in at "+result);
+		System.out.println("x not in at "+result+" (-1 Expected)");
 		
 		
 		System.out.println("\n_________________________SUBLIST USER ");
 		StudentList listE = new StudentList(5);
-		listE.add(s1);
-		listE.add(s2);
-		listE.add(s3);
-		listE.add(s4);
-		listE.add(s5);
+		Assert.assertEquals(true,listE.add(s1),"Failed to add u01 - Zelda");
+		Assert.assertEquals(true,listE.add(s2),"Failed to add u02 - Que");
+		Assert.assertEquals(true,listE.add(s3),"Failed to add u03 - La");
+		Assert.assertEquals(true,listE.add(s4),"Failed to add u04 - Ida");
+		Assert.assertEquals(true,listE.add(s5),"Failed to add u05 - Boo");
 		Student[] sub = listE.sublist(s1,s5);
 		System.out.println("between user2 and user5");
 		for (Student s: sub) {
@@ -114,11 +113,11 @@ public class MiTestList {
 		
 		System.out.println("\n_________________________SUBLIST NAME ");
 		StudentList listF = new StudentList(byName,5);
-		listF.add(s1);
-		listF.add(s2);
-		listF.add(s3);
-		listF.add(s4);
-		listF.add(s5);
+		Assert.assertEquals(true,listF.add(s1),"Failed to add u01 - Zelda");
+		Assert.assertEquals(true,listF.add(s2),"Failed to add u02 - Que");
+		Assert.assertEquals(true,listF.add(s3),"Failed to add u03 - La");
+		Assert.assertEquals(true,listF.add(s4),"Failed to add u04 - Ida");
+		Assert.assertEquals(true,listF.add(s5),"Failed to add u05 - Boo");
 		sub = listF.sublist(s5,s1);
 		System.out.println("\nbetween Boo and Zelda");
 		for (Student s: sub) {
