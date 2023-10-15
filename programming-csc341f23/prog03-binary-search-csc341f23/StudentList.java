@@ -130,24 +130,24 @@ public class StudentList {
         // If array is empty, add at first index
         if (count == 0) {
             students[0] = student;
+            count++;
         } else {
             // Find first index with greater student, or count if no greater student found
             int idx = 0;
-            while (orderBy.compare(students[idx], student) <= 0 && idx < count) {
+            while (idx < count && orderBy.compare(student, students[idx]) > 0) {
                 idx++;
             }
 
             // Insert student at idx, moving rest of objects to the right
             Student save1 = student;
             Student save2 = null;
+            count++;
             for (; idx < count; idx++) {
                 save2 = students[idx];
                 students[idx] = save1;
                 save1 = save2;
             }
         }
-        // Update count and return sucsess
-        count++;
         return true;
     } // end add(Student)
 
@@ -297,20 +297,22 @@ public class StudentList {
 
         // Find the middle of our list. Compare student to value at middle
         // If value is larger
-        while (iterations > 0) {
+        while (iterations >= 0) {
             mid = (start + end) / 2;
-            if (orderBy.compare(student, students[mid]) == 0) {
+            int comparison = orderBy.compare(student, students[mid]);
+            if (comparison == 0) {
                 return mid;
             }
-            if (orderBy.compare(student, students[mid]) < 0) {
+            if (comparison < 0) {
                 end = mid;
             }
-            if (orderBy.compare(student, students[mid]) > 0) {
+            if (comparison > 0) {
                 start = mid + 1;
             }
             if (start > end) {
                 return -1;
             }
+            iterations--;
         }
         return -1;
     } // end findBS(student)
@@ -487,15 +489,15 @@ public class StudentList {
 
         // Try to quick find start and end indicies using find
         int startIdx = findBS(start);
-        int endIdx = findBS(start);
+        int endIdx = findBS(end);
 
-        // If starting index wasn't found, find where the index WOULD be. (Range: -1 to
-        // count-2)
+        // If starting index wasn't found, find where the index WOULD be.
+        // Find first index with student larger than start (Range: -1 to count-2)
         if (startIdx == -1) {
-            startIdx++;
+            startIdx = 1;
             boolean found = false;
             while (startIdx < count && !found) {
-                if (orderBy.compare(students[startIdx], start) < 0) {
+                if (orderBy.compare(start, students[startIdx]) > 0) {
                     startIdx++;
                 } else {
                     found = true;
@@ -510,12 +512,13 @@ public class StudentList {
         }
 
         // If ending index wasn't found, find where the index WOULD be starting at found
-        // startIdx (Range: startIdx to count)
+        // startIdx
+        // Find first index equal to or larger than end (Range: startIdx to count)
         if (endIdx == -1) {
             endIdx = startIdx;
             boolean found = false;
             while (endIdx < count && !found) {
-                if (orderBy.compare(students[endIdx], end) < 0) {
+                if (orderBy.compare(end, students[endIdx]) > 0) {
                     endIdx++;
                 } else {
                     found = true;
