@@ -25,7 +25,7 @@ public class StudentList {
     return true;
   }
   
-  public boolean isValid() {
+  public boolean isValid(int index) {
   	return false;
   }
 
