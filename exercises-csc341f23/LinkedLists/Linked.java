@@ -22,12 +22,12 @@ public class Linked {
         return list;
     }
 
-    /** add to the end of the list */
+    /** add to the front of the list */
     public void prepend(String item) {
 
     }
 
-    /** add at that index */
+    /** add to then end of the list */
     public void append(String item) {
 
     }
