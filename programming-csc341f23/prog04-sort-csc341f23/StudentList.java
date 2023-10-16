@@ -317,14 +317,50 @@ public class StudentList {
         return -1;
     } // end findBS(student)
 
-    // TODO: write findRecurse
+    /**
+     * Used binary search recursivly to find index of given Student within
+     * this.students. Uses recursable private method findRecurse(Student,int,int),
+     * giving an initial starting range of 0 to (count-1)
+     * 
+     * @param student Student to search for
+     * @return Index of student if found, else -1
+     */
     public int findRecurse(Student student) {
-        return -1;
-    }
+        return findRecurse(student, 0, count - 1);
+    } // end findRecurse(student)
 
+    /**
+     * Finds the Student recursivly between start and end indicies (Inclusive)
+     * Used only by user-accessable findRecurse(Student) method
+     * 
+     * @param student Student to search for
+     * @param start   Starting index of search (Inclusive)
+     * @param end     Ending index of search (Inclusive)
+     * @return Index of student if found, else -1
+     */
     private int findRecurse(Student student, int start, int end) {
+        // If the indices overlap, give fail value of -1
+        if (start > end) {
+            return -1;
+        }
+
+        // Find middle value, and compare
+        int mid = (start + end) / 2;
+        int comparison = orderBy.compare(student, students[mid]);
+
+        // Return if found, otherwise adjust bounds and call function to search again
+        if (comparison == 0) {
+            return mid;
+        }
+        if (comparison > 0) {
+            return findRecurse(student, mid + 1, end);
+        }
+        if (comparison < 0) {
+            return findRecurse(student, start, mid - 1);
+        }
+        // error value
         return -1;
-    }
+    } // end findRecurse(student,start,end)
 
     // ____________________________________________________
     // REMOVE METHODS
@@ -558,29 +594,63 @@ public class StudentList {
     // ORDERING METHODS
     // ____________________________________________________
 
-    // TODO: Write reorder
+    /**
+     * Setter method for orderBy Comparator. After being set, reorders the list
+     * according to this new Comparator
+     * 
+     * @param order New Comparator<Student> to sort list by
+     */
     public void reorder(Comparator<Student> order) {
+        // Set orderBy
+        orderBy = order;
 
-    }
+        // For each student in the list, add to a copy list sorted by
+        // Comparator<Student>
+        StudentList reorderedList = new StudentList(order, capacity());
+        for (Student s : students) {
+            reorderedList.add(s);
+        }
 
-    // TODO: Write min
+        // Set this.students to the new reordered list
+        for (int idx = 0; idx < count; idx++) {
+            this.students[idx] = reorderedList.students[idx];
+        }
+        this.students = reorderedList.students;
+    } // end reorder(order)
+
+    /**
+     * Gives the minnimum value from students based off of current orderBy
+     * 
+     * @return Minnimum Student
+     */
     public Student min() {
-        return null;
+        return students[0];
     }
 
-    // TODO: Write max()
+    /**
+     * Gives the maxximum value from students based off of current orderBy
+     * 
+     * @return Maxximum Student
+     */
     public Student max() {
-        return null;
+        return students[count - 1];
     }
 
-    // TODO: Write min(Comparator<Student>)
+    /**
+     * Gives the minnimum value from students based off of given Comparator<Student>
+     * 
+     * @param order Comparator<Student> to define minnimum
+     * @return Minnimum Student
+     */
     public Student min(Comparator<Student> order) {
-        return null;
+        StudentList newList = new StudentList(order, capacity());
+        return newList.get(0);
     }
 
     // TODO: Write max(Comparator<Student>)
     public Student max(Comparator<Student> order) {
-        return null;
+        StudentList newList = new StudentList(order, capacity());
+        return newList.get(count - 1);
     }
 
     // ____________________________________________________
