@@ -1,6 +1,6 @@
 ## Lab 6 : Linked List of Students
 
-Due: Tuesday, October 23 end-of-day
+Due: Tuesday, October 24 end-of-day
 
 In this lab, you will again be creating the ADT List, except this time you will be implementing it using a linked list.
 
