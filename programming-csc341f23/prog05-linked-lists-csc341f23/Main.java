@@ -57,7 +57,7 @@ public class Main {
     slist.add(sZ,3);
     // not there
     slist.add(x,10);
-    System.out.println("expecting u1 u3 u2 u11 u4");
+    System.out.println("expecting u1 u2 u3 u11 u4");
     System.out.println(slist);
 
     System.out.println("\n________________ Removing item");
