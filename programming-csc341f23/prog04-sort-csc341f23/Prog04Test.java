@@ -1,8 +1,6 @@
 import java.util.Comparator;
 
 public class Prog04Test {
-
-    // TODO: Write non-default Comparators
     public static Comparator<Student> byName = new Comparator<Student>() {
         @Override
         public int compare(Student s1, Student s2) {
@@ -30,7 +28,6 @@ public class Prog04Test {
     };
 
     public static void main(String[] args) {
-        // TODO: Create starting list of students
         Student s1 = new Student("u01");
         Student s2 = new Student("u02");
         Student s3 = new Student("u03");
@@ -56,7 +53,6 @@ public class Prog04Test {
         sZ.name("TeddyBomber");
 
         System.out.println("_________________________RECURSIVE BINARY SEARCH METHOD");
-        // TODO: Test findRecurse(Student)
         StudentList listA = new StudentList(8);
         listA.add(s1);
         listA.add(s2);
@@ -74,7 +70,6 @@ public class Prog04Test {
                 "Failed to handle looking for non-existant student (expected -1)");
 
         System.out.println("\n_________________________REORDER");
-        // TODO: Test reorder(Comparator<Student>)
         listA.reorder(byName);
         System.out.println("* Reordered listA by name");
 
@@ -84,25 +79,21 @@ public class Prog04Test {
 
         System.out.println("\n_________________________MIN AND MAX");
         System.out.println(" - looking in listA sorted by name");
-        // TODO: Test min()
         Assert.assertEquals("u05", listA.min().username(), "Incorrect minnimum. Expected s5 - Edward");
-
-        // TODO: Test max()
         Assert.assertEquals("u06", listA.max().username(), "Incorrect minnimum. Expected s6 - Vicious");
 
         System.out.println(" - Passing Comparator<Student> to find min and max by username");
-
-        // TODO: Test min(Comparator<Student>)
         Assert.assertEquals("u01", listA.min(byUser).username(), "Incorrect minnimum. Expected s1 - Spike");
-
-        // TODO: Test max(Comparator<Student>)
         Assert.assertEquals("u08", listA.max(byUser).username(), "Incorrect minnimum. Expected s8 - Julia");
 
         System.out.println("\n_________________________CONVERT METHODS");
-        // TODO: Test toArray(Comparator<Student>)
-
-        // TODO: Test findAll(String)
+        System.out.println(" - Print listA first by major, then by user");
+        StudentList listB = new StudentList();
+        listB.addAll(listA.toArray(byMajor));
+        System.out.println(listB);
+        System.out.println("\n - Print all Math majors in listA");
+        StudentList listC = new StudentList();
+        listC.addAll(listA.findAll("MAT"));
+        System.out.println(listC);
     }
 }
-
-// TODO: ADD JAVADOCS
