@@ -191,6 +191,9 @@ public class StudentList {
         // Add only as many will fit in the List.
         // Add everything to the end of the List.
         // Return how many were added to the List.
+        if (array.length == 0) {
+            return -1;
+        }
         int added = 0;
         for (Student objStudent : array) {
             if (!isFull()) {
@@ -580,15 +583,47 @@ public class StudentList {
         return sublist(startIdx + 1, endIdx - 1);
     } // end sublist(start,end)
 
-    // TODO: Write toArray
+    /**
+     * Creates and return a Student array sorted with given Comparator<Student>
+     * 
+     * @param order Comparator<Student> to sort by
+     * @return Sorted Student array
+     */
     public Student[] toArray(Comparator<Student> order) {
-        return null;
-    }
+        StudentList newList = new StudentList(order, capacity());
+        for (Student s : students) {
+            newList.add(s);
+        }
+        return newList.toArray();
+    } // end toArray(order)
 
-    // TODO: Write findAll
+    /**
+     * Returns all Students in the list who have the specified major
+     * 
+     * @param major Major to search for
+     * @return Student array of all Students with specified major
+     */
     public Student[] findAll(String major) {
-        return null;
-    }
+        // Search for all Students with given major
+        int majorFound = 0;
+        for (Student s : students) {
+            if (s.major().equals(major)) {
+                majorFound++;
+            }
+        }
+
+        // Create a new array, and reiterate to add all Students with given major
+        Student[] newStudents = new Student[majorFound];
+        int idx = count - 1;
+        while (majorFound > 0) {
+            if (students[idx].major().equals(major)) {
+                newStudents[majorFound - 1] = students[idx];
+                majorFound--;
+            }
+            idx--;
+        }
+        return newStudents;
+    } // end findAll(major)
 
     // ____________________________________________________
     // ORDERING METHODS
@@ -625,7 +660,7 @@ public class StudentList {
      */
     public Student min() {
         return students[0];
-    }
+    } // end min()
 
     /**
      * Gives the maxximum value from students based off of current orderBy
@@ -634,7 +669,7 @@ public class StudentList {
      */
     public Student max() {
         return students[count - 1];
-    }
+    } // end max()
 
     /**
      * Gives the minnimum value from students based off of given Comparator<Student>
@@ -644,14 +679,25 @@ public class StudentList {
      */
     public Student min(Comparator<Student> order) {
         StudentList newList = new StudentList(order, capacity());
+        for (Student s : students) {
+            newList.add(s);
+        }
         return newList.get(0);
-    }
+    } // end min(order)
 
-    // TODO: Write max(Comparator<Student>)
+    /**
+     * Gives the maxximum value from students based off of given Comparator<Student>
+     * 
+     * @param order Comparator<Student> to define maxximum
+     * @return Maxximum Student
+     */
     public Student max(Comparator<Student> order) {
         StudentList newList = new StudentList(order, capacity());
+        for (Student s : students) {
+            newList.add(s);
+        }
         return newList.get(count - 1);
-    }
+    } // end max(order)
 
     // ____________________________________________________
     // SETTERS AND GETTERS
