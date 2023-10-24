@@ -96,7 +96,6 @@ public class StudentList {
    * @return if index valid, return element at that position, else null
    */
   public Student get(int index) {
-    // TODO: Write get(index)
     // Check validity
     if (!isValid(index)) {
       return null;
@@ -108,7 +107,7 @@ public class StudentList {
       index--;
     }
     return pointer.student;
-  }
+  } // end get(index)
 
   // ____________________ ADD
 
@@ -118,8 +117,11 @@ public class StudentList {
    * @param student added to the List.
    */
   public void add(Student student) {
-    // TODO: Write add(student)
-  }
+    Node n = new Node(student);
+    tail.next = n;
+    tail = n;
+    count++;
+  } // end add(student)
 
   /**
    * Add specified student to the List at specified location (if index valid)
@@ -129,7 +131,25 @@ public class StudentList {
    * @return true if item added, else false.
    */
   public boolean add(Student student, int index) {
-    // TODO: Write add(student, index)
+    if (!isValid(index)) {
+      return false;
+    }
+
+    Node newNode = new Node(student);
+
+    // If empty, add value
+    if (isEmpty()) {
+      add(student);
+      return true;
+    }
+
+    // Set pointer at head and move index number of times
+    Node pointer = head;
+    while (index > 0) {
+      pointer = pointer.next;
+      index--;
+    }
+
     return false;
   }
 
