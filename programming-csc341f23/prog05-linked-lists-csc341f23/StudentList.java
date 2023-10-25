@@ -83,9 +83,13 @@ public class StudentList {
     }
     // Check tail
     if (tail.student.equals(student)) {
-      return idx;
+      return count-1;
     } else {
-      return -1;
+      if (pointer.student.equals(student)) {
+        return idx;
+      } else {
+        return -1;
+      }
     }
   }
 
@@ -118,7 +122,12 @@ public class StudentList {
    */
   public void add(Student student) {
     Node n = new Node(student);
-    tail.next = n;
+    // If empty, add head
+    if (isEmpty()) {
+      head = n;
+    } else {
+      tail.next = n;
+    }
     tail = n;
     count++;
   } // end add(student)
@@ -150,18 +159,28 @@ public class StudentList {
       index--;
     }
 
+    // If at head
+    if (pointer == head && index == 0) {
+      newNode.next = head;
+      head = newNode;
+      count++;
+      return true;
+    }
+
+    // If at tail
+    if(pointer == tail) {
+      tail.next = newNode;
+      tail = newNode;
+      count++;
+      return true;
+    }
+
     // Add new Node after pointer
     newNode.next = pointer.next;
     pointer.next = newNode;
-
-    // Update tail if needed
-    if (tail == pointer) {
-      tail = newNode;
-    }
-
     count++;
     return true;
-  }
+  } // end add(student, index)
 
   // ____________________ REMOVE
 
@@ -172,9 +191,18 @@ public class StudentList {
    * @return if item removed, return true, else false
    */
   public boolean remove(Student item) {
+    // Search for matching Node containing Student
+    int idx = find(item);
 
-    return false;
-  }
+    // If not found, return false
+    if (!isValid(idx)) {
+      return false;
+    }
+
+    // Remove Node at index
+    remove(idx);
+    return true;
+  } // end remove(item)
 
   /**
    * Remove item at specified index (if index valid)
@@ -183,9 +211,48 @@ public class StudentList {
    * @return if index valid, return element at that index.
    */
   public Student remove(int index) {
-    // TODO: Write remove(index)
-    return null;
-  }
+    // Check is index valid
+    if(!isValid(index)) {
+      return null;
+    }
+    // If found at start, remove and assign new head
+    if (index == 0) {
+      Node save = head;
+      head = head.next;
+      count--;
+      return save.student;
+    }
+
+    // If found at end, remove and assign new tail
+    if (index == count-1) {
+      Node n = head;
+      Node save = tail;
+      while (n.next != tail) {
+        n = n.next;
+      }
+      n.next = null;
+      tail = n;
+      count--;
+      return save.student;
+    }
+
+    // If in middle of list, remove and mend linked list
+
+    // Find Node before
+    Node pointer = head;
+    while (index > 1) {
+      pointer = pointer.next;
+      index--;
+    }
+
+    // Save, then remove Node by linking Node before to Node after
+    Node save = pointer.next;
+    pointer.next = pointer.next.next;
+
+    // Update count and return true
+    count--;
+    return save.student;
+  } // end remove(index)
 
   // ____________________ CONVERT
 
@@ -195,8 +262,19 @@ public class StudentList {
    * @return array of List items of the same length as elements in the array
    */
   public Student[] toArray() {
-    // TODO: Write toArray()
-    return new Student[0];
+    // Make count sized array, and add values count times, then return
+    Student[] studentArray = new Student[count];
+    int idx = 0;
+    Node pointer = null;
+    while (idx < count) {
+      if (idx == 0) {
+        pointer = head;
+      }
+      studentArray[idx] = pointer.student;
+      pointer = pointer.next;
+      idx++;
+    }
+    return studentArray;
   }
 
   // ____________________ NODE class _______________________
@@ -212,6 +290,11 @@ public class StudentList {
     // Only constructor for a new Node
     Node(Student s) {
       student = s;
+    }
+
+    @Override
+    public String toString() {
+      return student.toString();
     }
   }
 }
