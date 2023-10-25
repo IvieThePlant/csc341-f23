@@ -143,14 +143,24 @@ public class StudentList {
       return true;
     }
 
-    // Set pointer at head and move index number of times
+    // Set pointer at head and move index number of times (to one before index)
     Node pointer = head;
-    while (index > 0) {
+    while (index > 1) {
       pointer = pointer.next;
       index--;
     }
 
-    return false;
+    // Add new Node after pointer
+    newNode.next = pointer.next;
+    pointer.next = newNode;
+
+    // Update tail if needed
+    if (tail == pointer) {
+      tail = newNode;
+    }
+
+    count++;
+    return true;
   }
 
   // ____________________ REMOVE
@@ -162,7 +172,7 @@ public class StudentList {
    * @return if item removed, return true, else false
    */
   public boolean remove(Student item) {
-    // TODO: Write remove(item)
+
     return false;
   }
 
