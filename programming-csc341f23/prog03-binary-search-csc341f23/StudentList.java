@@ -297,41 +297,6 @@ public class StudentList{
 	}
 
     // ____________________________________________________
-    //                   CONVERT METHODS
-    // ____________________________________________________
-
-    /** Creates a new array and copy the contents of the list into the array
-     * @return New array, else null if
-     */
-    public Student[] toArray() {
-        // create a new array and copy the contents of the list into the array
-        // if the list is empty, return null;
-        // else return an array of the exact length as the List
-        if (! isEmpty()) {
-            Student[] newArray = new Student[count];
-            
-            int numCopied = 0;
-            int i = 0;
-            while(numCopied < count) {
-                newArray[numCopied] = students[i];
-                numCopied ++;
-                i ++;
-            }
-            return newArray;
-        }
-        return null;
-    } // end toArray()
-
-	public Student[] sublist(String start, String end) {
-		// TODO
-        // Create an array of students (in order)
-		// that fall between start and end EXCLUSIVE of these.
-		// Use the Comparator to establish inclusion within the range.
-		// return null if no values are in between
-		return null;
-	}
-
-    // ____________________________________________________
     //                   REMOVE METHODS
     // ____________________________________________________
 
@@ -386,6 +351,28 @@ public class StudentList{
     //                   CONVERT METHODS
     // ____________________________________________________
 
+    /** Creates a new array and copy the contents of the list into the array
+     * @return New array, else null if
+     */
+    public Student[] toArray() {
+        // create a new array and copy the contents of the list into the array
+        // if the list is empty, return null;
+        // else return an array of the exact length as the List
+        if (! isEmpty()) {
+            Student[] newArray = new Student[count];
+            
+            int numCopied = 0;
+            int i = 0;
+            while(numCopied < count) {
+                newArray[numCopied] = students[i];
+                numCopied ++;
+                i ++;
+            }
+            return newArray;
+        }
+        return null;
+    } // end toArray()
+    
     /** Attempts to put all List elements into array, but only if all will fit
      * @param toFill Array to fill with students
      * @return Number of students added to toFill
@@ -421,6 +408,30 @@ public class StudentList{
         }
 		return null;
 	} // end sublist(start,end)
+
+	public Student[] sublist(String startUser, String endUser) {
+		// TODO
+        // Create an array of students (in order)
+		// that fall between start and end EXCLUSIVE of these.
+		// Use the Comparator to establish inclusion within the range.
+		// return null if no values are in between
+        int startIdx = this.find(startUser);
+        int endIdx = this.find(endUser);
+		if((startIdx == -1) || (endIdx == -1)) {
+            return null;
+        }
+        if()
+	}
+    
+    public Student[] sublist(Student s1, Student s2) {
+        // Create a new array to hold all the elements between start and end. 
+        // You will have to search the list to determine the start and end index. 
+        // The order is based on the Comparator. The students do not need to exist in the list! 
+        // Importantly, you have to determine the size of the array, 
+        // then iterate over the sublist elements again to put them into the new array 
+        // (or better yet, use the other sublist method!). If there are no elements between, return null.
+
+    }
 
     // ____________________________________________________
     //                   SETTERS AND GETTERS
