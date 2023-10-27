@@ -25,6 +25,7 @@ Note that in this implementation, you will be using a "dummy" or sentinal node t
 
 
 1. `class Node`. Add a default constructor to the Node class.
+2. `class Node`. Modify the constructor so that each child points to the dummy node.
 
 1. Implementation for class List
 - `void add(Simple value)`
