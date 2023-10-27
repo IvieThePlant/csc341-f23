@@ -1,6 +1,6 @@
 ## Programming Assignem 6 - Binary Search Trees
 
-DUE Thursday, October 26
+DUE Thursday, November2 (Moodle link will stay open until Friday end-of-day)
 
 In this lab, you will again create the Abstract Data Type List, except this time you will use a Binary Search Tree for implementation. The List will be storing elements of type Simple.
 
