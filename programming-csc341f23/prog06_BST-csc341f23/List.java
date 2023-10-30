@@ -3,7 +3,7 @@ import java.util.*;
 class List {
 
 	/** Primary entry point into the tree */
-	Simple head = null;
+	Node root = null;
 
     /** Count of elements in the List */
     int count = 0;
