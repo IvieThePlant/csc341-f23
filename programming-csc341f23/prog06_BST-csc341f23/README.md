@@ -1,6 +1,6 @@
-## Lab 07 Binary Search Trees
+## Programming Assignem 6 - Binary Search Trees
 
-DUE Tuesday, March 28
+DUE Thursday, November2 (Moodle link will stay open until Friday end-of-day)
 
 In this lab, you will again create the Abstract Data Type List, except this time you will use a Binary Search Tree for implementation. The List will be storing elements of type Simple.
 
@@ -25,6 +25,7 @@ Note that in this implementation, you will be using a "dummy" or sentinal node t
 
 
 1. `class Node`. Add a default constructor to the Node class.
+2. `class Node`. Modify the constructor so that each child points to the dummy node.
 
 1. Implementation for class List
 - `void add(Simple value)`
