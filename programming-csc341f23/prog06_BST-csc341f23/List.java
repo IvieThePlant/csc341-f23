@@ -23,7 +23,8 @@ class List {
     Node dummy = new Node(null);
 
     public List() {
-        // TODO: write default constructor
+        root = null;
+        count = 0;
     }
 
     public List(Comparator<Simple> order) {
@@ -205,12 +206,20 @@ class List {
      * @return Simple array of all values in list, sorted
      */
     public Simple[] toArray() {
-        // TODO: write toArray()
         Simple[] newArray = new Simple[count];
         toArray(newArray, 0, root);
         return toArray();
     } // end toArray()
 
+
+    /**
+     * Private recursive method for adding all tree values in order to given array
+     * 
+     * @param newArray The array to add values to
+     * @param added The amount of values already added to newArray, but also the index of the next element to be added
+     * @param n The curent pointer Node
+     * @return The new amount of added values to newArray
+     */
     private int toArray(Simple[] newArray, int added, Node n) {
         // Base case
         if (n == dummy) {
@@ -221,11 +230,14 @@ class List {
         added = toArray(newArray, added, n.left);
 
         // Add Node to array
+        newArray[added] = n.value;
+        added++;
 
         // Add all Nodes to the right of Node to array
+        added = toArray(newArray, added, n.right);
 
         return added;
-    }
+    } // end toArray(newArray, added, n)
 
     class Node {
         // Node's stored value
