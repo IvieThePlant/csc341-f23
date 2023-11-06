@@ -1,17 +1,13 @@
 public class Main {
 
     public static void main(String[] args) {
-        Trio<Integer> trio = new Trio<>(3,2,1);
-        System.out.println(trio);
-        trio.order();
-        System.out.println(trio);
+        // Test your code by creating an instance of Trio that stores integers
+        Trio<Integer> trio1 = new Trio<>(3, 1, 2);
 
-        Trio<MyClass> triomc = new Trio<>(new MyClass(0,1), new MyClass(2,3), new MyClass(4,5));
-        System.out.println(triomc);
-
-        TrioDouble triod = new TrioDouble(3.5,2.7,1.2);
-        System.out.println(triod);
-        triod.order();
-        System.out.println(triod);
+        // Test your code by creating an instance of Trio that stores Simple obkects.
+        Simple s1 = new Simple("A", 10);
+        Simple s2 = new Simple("B", 5);
+        Simple s3 = new Simple("C", 1);
+        Trio<Simple> simples = new Trio<>(s1, s2, s3);
     }
 }
