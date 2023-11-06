@@ -122,22 +122,28 @@ class List {
      * @return Simple that has matching string value, else null
      */
     public Simple find(String value) {
-        // Search through tree, returning matching value, or null if reach dummy
-        Node pointer = root;
-        while (pointer != dummy) {
-            int comparison = value.compareTo(root.value.alpha);
-            if (comparison == 0) {
-                return pointer.value;
-            }
-            if (comparison < 0) {
-                pointer = pointer.left;
-            }
-            if (comparison > 0) {
-                pointer = pointer.right;
-            }
-        }
-        return null;
+        return find(value, root);
     } // end find(value)
+
+    private Simple find(String value, Node n) {
+        // TODO: Write recursive find
+
+        Simple s = find(value, n.left);
+        if (s != null) {
+            return s;
+        }
+
+        if (value.equals(n.value.alpha)) {
+            return n.value;
+        }
+
+        s = find(value, n.right);
+        if (s != null) {
+            return s;
+        }
+
+        return null;
+    }
 
     /**
      * Finds node with first simple with matching Integer value
@@ -146,22 +152,30 @@ class List {
      * @return Simple that has matching Integer value, else null
      */
     public Simple find(Integer value) {
-        // Search through tree, returning matching value, or null if reach dummy
-        Node pointer = root;
-        while (pointer != dummy) {
-            int comparison = value - root.value.number;
-            if (comparison == 0) {
-                return pointer.value;
-            }
-            if (comparison < 0) {
-                pointer = pointer.left;
-            }
-            if (comparison > 0) {
-                pointer = pointer.right;
-            }
-        }
-        return null;
+        return find(value, root);
     } // end find(value)
+
+    private Simple find(Integer value, Node n) {
+        // TODO: Write recursive find
+        if (n == dummy) {
+            return null;
+        }
+        Simple s = find(value, n.left);
+        if (s != null) {
+            return s;
+        }
+
+        if (value.equals(n.value.number)) {
+            return n.value;
+        }
+
+        s = find(value, n.right);
+        if (s != null) {
+            return s;
+        }
+
+        return null;
+    }
 
     /**
      * Finds the minnimum value in list
@@ -211,13 +225,13 @@ class List {
         return toArray();
     } // end toArray()
 
-
     /**
      * Private recursive method for adding all tree values in order to given array
      * 
      * @param newArray The array to add values to
-     * @param added The amount of values already added to newArray, but also the index of the next element to be added
-     * @param n The curent pointer Node
+     * @param added    The amount of values already added to newArray, but also the
+     *                 index of the next element to be added
+     * @param n        The curent pointer Node
      * @return The new amount of added values to newArray
      */
     private int toArray(Simple[] newArray, int added, Node n) {
