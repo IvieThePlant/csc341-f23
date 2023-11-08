@@ -1,10 +1,8 @@
-## Programming Assignment 7 Balanced Binary Search Trees
+# Programming Assignment 7 Balanced Binary Search Trees
 
-### Implementation due Thursday, November 16 end-of-day
-_Zip all files and submit via Moodle_
+## Implementation due Thursday, November 16 end-of-day
 
-
-<hr>
+### Zip all files and submit via Moodle
 
 In this project, you will be building on the previous lab to create a List class that is implemented with a Binary Search Tree (BST). The primary focus will be on maintaining a balanced tree (but not with rotations).
 
@@ -19,23 +17,16 @@ Start with your BST lab, which should have the following:
 - `Simple max()`
 - `Simple[] toArray()`
 
-<hr>
-
 **If you were not able to complete the BST or something wasn't working correctly, please come to office hours and I will fix it or provide you with code.**
-
-<hr>
-
 
 ## Requirements
 
-#### IMPLEMENTATION: Minor additions and modifications to the Node class
+### IMPLEMENTATION: Minor additions and modifications to the Node class
 
 - Add `Node parent` to the Node class.
 - Add `int height` to the Node class.
 
-<hr>
-
-#### IMPLEMENTATION: Additions and modifications of methods related to tree height and ordering.
+### IMPLEMENTATION: Additions and modifications of methods related to tree height and ordering
 
 - Add `public int height()` that returns the height of the tree. _This should be private, but then I could not inspect it for testing._
 
@@ -47,11 +38,9 @@ Start with your BST lab, which should have the following:
 
 - Add `public void reorder(Comparator<Simple> comp)`: Replace the ordering value with this comparator. Reorder the tree. Make sure it is **balanced**.
 
-<hr>
+### IMPLEMENTATION: Additional methods related to search
 
-#### IMPLEMENTATION: Additional methods related to search.
-
-- Add/Modify `public ArrayList<Simple> query(String value)`: Fill the ArrayList with all elements that are equal to the value that satisfy the query. 
+- Add/Modify `public ArrayList<Simple> query(String value)`: Fill the ArrayList with all elements that are equal to the value that satisfy the query.
 
 When removing nodes or rebalancing a tree, it can be useful to find the successor and predecessor of a given node. We are not using these methods in this implementation because we do not perform rotations or remove nodes, but it is a good exercise.
 
@@ -67,17 +56,12 @@ When removing nodes or rebalancing a tree, it can be useful to find the successo
   If left subtree is not NULL, then predecessor is maximum value of the left subtree.
   If left subtree is NULL, the predecessor is an ancestor (if it exists -- notice that if the node is the leftmost node, there is no predecessor). Travel up the tree using parent pointers until you see a node that is the right child of its parent. The predecessor is that child's parent.
 
-<hr>
-
-### Documentation
+## Documentation
 
 - Javadocs are professional and complete. They do not describe implementation -- only input and output.
 - Comment the code. Not too much, not too little.
 - Style compliant.
 
-<hr>
-
-### Testing
+## Testing
 
 It is up to you to test your code and make sure it is meeting the requirements. I will not assess your tests.
-
