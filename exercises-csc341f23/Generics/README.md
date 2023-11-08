@@ -1,4 +1,4 @@
-### Generics
+# Generics
 
 We have a lot of ways to reuse code -- functions, class inheritance, interfaces. Using Generics in Java allows you as a programmer to reuse code from a very high level. You are reusing the logic and applying it to any type of object.
 
@@ -9,6 +9,3 @@ In this exercise create a new class Trio that uses generics to store 3 items in 
 > Note: You will have to make changes to the Simple class to be able to compare elements within the Trio class. Add any needed getters and setters.
 
 BONUS CONCEPT: Notice the "copy constructor". In OOP languages, there is the ability to create a special constructor that creates a copy of the passed object. This allows you to easily copy the values of an instance without being tied to that object.
-
-
-

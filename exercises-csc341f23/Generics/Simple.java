@@ -7,6 +7,10 @@ public class Simple implements Comparable<Simple> {
         number = n;
     }
 
+    public String toString() {
+        return "" + alpha + number;
+    }
+
     public int compareTo(Simple s) {
         int comparison = alpha.compareTo(s.alpha);
         if (comparison != 0) {
