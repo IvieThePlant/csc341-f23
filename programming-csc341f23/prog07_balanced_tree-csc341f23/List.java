@@ -59,6 +59,9 @@ class List {
      * @param simple Value to add to tree
      */
     public void add(Simple simple) {
+
+        // TODO: Modify to maintain height
+
         // Create new node
         Node newNode = new Node(simple);
 
@@ -116,7 +119,7 @@ class List {
     } // end get(simple)
 
     /**
-     * Finds node with first simple with matching string value
+     * Finds first node with matching simple's string value
      * 
      * @param value String to search for
      * @return Simple that has matching string value, else null
@@ -125,23 +128,37 @@ class List {
         return find(value, root);
     } // end find(value)
 
+    /**
+     * Private recursive method for find(value)
+     * 
+     * @param value String being searched for in tree
+     * @param n     Current pointer node
+     * @return Matching Simple when found, else null
+     */
     private Simple find(String value, Node n) {
-        // TODO: Write recursive find
+        // Base Case: If at dummy return null
+        if (n == dummy) {
+            return null;
+        }
 
+        // Check the left subtree for value
         Simple s = find(value, n.left);
         if (s != null) {
             return s;
         }
 
+        // Check current node
         if (value.equals(n.value.alpha)) {
             return n.value;
         }
 
+        // Check thr right subtree for value
         s = find(value, n.right);
         if (s != null) {
             return s;
         }
 
+        // If not found, return null
         return null;
     }
 
@@ -155,25 +172,37 @@ class List {
         return find(value, root);
     } // end find(value)
 
+    /**
+     * Private recursive method for find(value)
+     * 
+     * @param value Integer being searched for in tree
+     * @param n     Current pointer node
+     * @return Matching Simple when found, else null
+     */
     private Simple find(Integer value, Node n) {
-        // TODO: Write recursive find
+        // Base Case: If at dummy, return null
         if (n == dummy) {
             return null;
         }
+
+        // Check the left subtree for value
         Simple s = find(value, n.left);
         if (s != null) {
             return s;
         }
 
+        // Check current node
         if (value.equals(n.value.number)) {
             return n.value;
         }
 
+        // Check the right subtree for value
         s = find(value, n.right);
         if (s != null) {
             return s;
         }
 
+        // If not found, return null
         return null;
     }
 
@@ -253,6 +282,30 @@ class List {
         return added;
     } // end toArray(newArray, added, n)
 
+    public Simple[] toArray(Comparator<Simple> comp) {
+        // TODO: Add toArray(comp)
+        return null;
+    }
+
+    public int height() {
+        // TODO: Add height()
+        return -1;
+    }
+
+    private void balance() {
+        // TODO: Add balance()
+    }
+
+    public void reorder(Comparator<Simple> comp) {
+        // TODO: Add reorder(comp)
+    }
+
+    public ArrayList<Simple> query(String value) {
+        // TODO: Add query(value)
+        return null;
+    }
+
+    // TODO: Add Javadoc comment for predecessor(n)
     public Node predecessor(Node n) {
         // Find the previous value in the tree
         Node current;
@@ -267,12 +320,13 @@ class List {
         // If there is NO left subtree, it is the first parent to have a right child
         // //TODO: Fix description
         current = n;
-        while (current.parant.right != current) {
-            current = current.parant;
+        while (current.parent.right != current) {
+            current = current.parent;
         }
-        return current.parant;
+        return current.parent;
     }
 
+    // TODO: Add Javadoc comment for successor(n)
     public Node successor(Node n) {
         // Find the next value in the tree
         Node current;
@@ -287,21 +341,23 @@ class List {
         // If there is NO right subtree, it is the first parent to have a right child
         // //TODO: Fix description
         current = n;
-        while (current.parant.left != current) {
-            current = current.parant;
+        while (current.parent.left != current) {
+            current = current.parent;
         }
-        return current.parant;
+        return current.parent;
     }
 
     class Node {
-        // Node's stored value
-        Simple value;
+        // Node's parent
+        Node parent;
         // Node's left child node(lesser)
         Node left;
         // Node's right child node(greater)
         Node right;
-        // Node's parent
-        Node parant;
+        // Node's height in tree
+        int height;
+        // Node's stored value
+        Simple value;
 
         /**
          * Node default constructor
