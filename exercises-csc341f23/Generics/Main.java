@@ -9,7 +9,10 @@ public class Main {
         Simple s1 = new Simple("A", 10);
         Simple s2 = new Simple("B", 5);
         Simple s3 = new Simple("C", 1);
-        Trio<Simple> simples = new Trio<>(s1, s2, s3);
+        Trio<Simple> simples = new Trio<>(s3, s2, s1);
         System.out.println(simples);
+        simples.order();
+        System.out.println(simples);
+
     }
 }
