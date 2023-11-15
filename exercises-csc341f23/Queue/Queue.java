@@ -32,6 +32,7 @@ class Queue<T> {
             return null;
         } else {
             T temp = queue[head];
+            queue[head] = null;
             head = (head + 1) % queue.length;
             return temp;
         }
