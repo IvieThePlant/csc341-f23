@@ -55,13 +55,13 @@ class List {
 
     /**
      * Adds new Node with value to the tree, according to Comparator
+     * Then traversed back up the tree, updating heights
+     * If it ever finds a node out of balance by at least 10, triggers
+     * reconstruction
      * 
      * @param simple Value to add to tree
      */
-    public void add(Simple simple) {
-
-        // TODO: Modify to maintain height
-
+    public void add(Simple simple, boolean rebuilding) {
         // Create new node
         Node newNode = new Node(simple);
 
@@ -69,6 +69,7 @@ class List {
         if (isEmpty()) {
             root = newNode;
             count++;
+            root.height = 0;
             return;
         }
 
@@ -85,13 +86,27 @@ class List {
                 pointer = pointer.right;
             }
         }
-
+        // Add the new node as a leaf (height 0) to either the left or the right
         if (comparison < 0) {
             setter.left = newNode;
         } else {
             setter.right = newNode;
         }
+        newNode.parent = setter;
+        newNode.height = 0;
         count++;
+
+        // Then, climb back up the list adjusting height using pointer
+        // Pointer starts at newNode, and changed height of parent if needed
+        while (pointer != root) {
+            if (Math.abs(pointer.parent.left.height - pointer.parent.right.height) >= 10 && !rebuilding) {
+                balance();
+            }
+            if (pointer.height == pointer.parent.height) {
+                pointer.parent.height++;
+            }
+            pointer = pointer.parent;
+        }
     } // end add(simple)
 
     /**
@@ -104,7 +119,7 @@ class List {
         // Search through tree, returning matching value, or null if reach dummy
         Node pointer = root;
         while (pointer != dummy) {
-            int comparison = ordering.compare(simple, root.value);
+            int comparison = ordering.compare(simple, pointer.value);
             if (comparison == 0) {
                 return pointer.value;
             }
@@ -117,6 +132,29 @@ class List {
         }
         return null;
     } // end get(simple)
+
+    /**
+     * Find Node in Tree with matching Simple value, or null if reach dummy
+     * 
+     * @param value Simple to search for
+     * @return Node with matching Simple, or null if not found
+     */
+    public Node find(Simple value) {
+        Node pointer = root;
+        while (pointer != dummy) {
+            int comparison = ordering.compare(value, pointer.value);
+            if (value.equals(pointer.value)) {
+                return pointer;
+            }
+            if (comparison < 0) {
+                pointer = pointer.left;
+            }
+            if (comparison > 0) {
+                pointer = pointer.right;
+            }
+        }
+        return null;
+    } // end find(value)
 
     /**
      * Finds first node with matching simple's string value
@@ -282,70 +320,224 @@ class List {
         return added;
     } // end toArray(newArray, added, n)
 
+    /**
+     * Turn Tree into an array, then re-sort it with the given Comparator
+     * 
+     * @param comp Comparator to sort returned array by
+     * @return Sorted Simple Array, sorted by given Comparator
+     */
     public Simple[] toArray(Comparator<Simple> comp) {
-        // TODO: Add toArray(comp)
-        return null;
-    }
+        // Get standard sorted array
+        Simple[] toSort = toArray();
 
-    public int height() {
-        // TODO: Add height()
-        return -1;
-    }
+        // If given Comparator is same as current current Comparator, return array
+        if (ordering == comp) {
+            return toSort;
+        }
 
-    private void balance() {
-        // TODO: Add balance()
-    }
+        // Create a new array to sort into
+        Simple[] sorted = new Simple[toSort.length];
+        int sortCount = 0;
 
-    public void reorder(Comparator<Simple> comp) {
-        // TODO: Add reorder(comp)
-    }
-
-    public ArrayList<Simple> query(String value) {
-        // TODO: Add query(value)
-        return null;
-    }
-
-    // TODO: Add Javadoc comment for predecessor(n)
-    public Node predecessor(Node n) {
-        // Find the previous value in the tree
-        Node current;
-        // If there is a left subtree, it is the max of the left subtree
-        if (n.left != null) {
-            current = n.left;
-            while (current.right != null) {
-                current = current.right;
+        // For each value in toSort, add it to the new array
+        for (Simple element : toSort) {
+            // Find the index of the first value larger than it, or first null
+            int idx = 0;
+            while ((sorted[idx] != null) && (comp.compare(sorted[idx], element) > 0)) {
+                idx++;
             }
-            return current;
-        }
-        // If there is NO left subtree, it is the first parent to have a right child
-        // //TODO: Fix description
-        current = n;
-        while (current.parent.right != current) {
-            current = current.parent;
-        }
-        return current.parent;
-    }
 
-    // TODO: Add Javadoc comment for successor(n)
+            // Count the value about to be added
+            sortCount++;
+
+            // If index is empty, insert element
+            // Otherwise, insert and shift values over
+            if (sorted[idx] == null) {
+                sorted[idx] = element;
+            } else {
+                Simple temp1 = element;
+                Simple temp2 = null;
+                while (idx < sortCount) {
+                    temp2 = sorted[idx];
+                    sorted[idx] = temp1;
+                    temp1 = temp2;
+                }
+            }
+        }
+
+        // Return the sorted array
+        return sorted;
+    } // end toArray(comp)
+
+    /**
+     * Gives the height of the tree
+     * 
+     * @return int height of root node
+     */
+    public int height() {
+        return root.height;
+    } // end height()
+
+    /**
+     * Re-creates Tree to restore balance using recursive private method
+     */
+    private void balance() {
+        // Put everything into sorted array
+        Simple[] sorted = toArray(ordering);
+
+        // Destroy the Tree
+        root = null;
+
+        // Call recursive balance function
+        balance(sorted, 0, sorted.length);
+    } // end balance()
+
+    /**
+     * Private recursive method for adding the middle element of given array, then
+     * repeating for the left and right halves of given array
+     * 
+     * @param array Sorted array of precious Tree
+     * @param start Index to start current selection (Inclusive)
+     * @param stop  Index to stop current selection (Exclusive)
+     */
+    private void balance(Simple[] array, int start, int stop) {
+        // Add middle value to Tree
+        int mid = (stop + start) / 2;
+        add(array[mid], true);
+
+        // If there are values to the left of mid, balance left half
+        if ((mid - start) > 0) {
+            balance(array, start, mid);
+        }
+
+        // if there are values to the right of mid, balance right half
+        if ((stop - (mid + 1)) > 0) {
+            balance(array, mid + 1, stop);
+        }
+    } // end balance(array,start,stop)
+
+    /**
+     * Replaces the Comparator, then re-balances the tree
+     * 
+     * @param comp New Comparator to structure Tree by
+     */
+    public void reorder(Comparator<Simple> comp) {
+        // Set new Comparator
+        ordering = comp;
+
+        // Rebalance Tree
+        balance();
+    } // end reorder(comp)
+
+    /**
+     * Searches Tree and returns all Simples with matching String
+     * 
+     * @param value String to search tree for
+     * @return ArrayList with all Simples with matching String
+     */
+    public ArrayList<Simple> query(String value) {
+        // Create a new ArrayList
+        ArrayList<Simple> queryList = new ArrayList<>();
+
+        // Assemble the Tree into an array
+        Simple[] treeArray = toArray();
+
+        // Find every Simple in Tree that has a matching String, and add to queryList
+        for (Simple element : treeArray) {
+            if (element.alpha.equals(value)) {
+                queryList.add(element);
+            }
+        }
+        return queryList;
+    } // end query(value)
+
+    /**
+     * Searches Tree for matching Simple directly before given Node
+     * 
+     * @param value Simple to find match of
+     * @return Predecessor Simple value, or null if none found
+     */
+    public Simple predecessor(Simple value) {
+        Node pointer = find(value);
+        if (pointer == null) {
+            return null;
+        }
+        return predecessor(pointer).value;
+    } // end predecessor(value)
+
+    /**
+     * Searches Tree for Node directly before given Node
+     * 
+     * @param n Node to search for predecessor of
+     * @return Predecessor of given Node, or null if none found
+     */
+    private Node predecessor(Node n) {
+        // Find the previous value in the tree
+        Node pointer;
+
+        // If there is a left subtree, it's the max of the left subtree
+        if (n.left != dummy) {
+            pointer = n.left;
+            while (pointer.right != dummy) {
+                pointer = pointer.right;
+            }
+            return pointer;
+        }
+
+        // Otherwise, it's the first parent to whom pointer is the right child
+        pointer = n;
+        while (pointer.parent.right != pointer) {
+            pointer = pointer.parent;
+            if (pointer == root) {
+                return null;
+            }
+        }
+        return pointer.parent;
+    } // end predecessor(n)
+
+    /**
+     * Searches Tree for matching Simple directly after given Node
+     * 
+     * @param value Simple to find match of
+     * @return Successor Simple value, or null if none found
+     */
+    public Simple successor(Simple value) {
+        Node pointer = find(value);
+        if (pointer == null) {
+            return null;
+        }
+        return successor(pointer).value;
+    } // end successor(value)
+
+    /**
+     * Searches Tree for Node directly after given Node
+     * 
+     * @param n Node to search for successor of
+     * @return Successor of given Node, or null if none found
+     */
     public Node successor(Node n) {
         // Find the next value in the tree
-        Node current;
-        // If there is a right subtree, it is the min of the right subtree
+        Node pointer;
+
+        // If there is a right subtree, it's the min of the right subtree
         if (n.right != null) {
-            current = n.right;
-            while (current.left != null) {
-                current = current.left;
+            pointer = n.right;
+            while (pointer.left != null) {
+                pointer = pointer.left;
             }
-            return current;
+            return pointer;
         }
-        // If there is NO right subtree, it is the first parent to have a right child
-        // //TODO: Fix description
-        current = n;
-        while (current.parent.left != current) {
-            current = current.parent;
+
+        // Otherwise, it's the first parent to have a right child
+        pointer = n;
+        while (pointer.parent.left != pointer) {
+            pointer = pointer.parent;
+            if (pointer == root) {
+                return null;
+            }
         }
-        return current.parent;
-    }
+        return pointer.parent;
+    } // end successor(n)
 
     class Node {
         // Node's parent
@@ -366,6 +558,7 @@ class List {
             value = null;
             left = dummy;
             right = dummy;
+            parent = null;
         }
 
         /**
@@ -377,6 +570,7 @@ class List {
             value = t;
             left = dummy;
             right = dummy;
+            parent = null;
         }
 
         /**

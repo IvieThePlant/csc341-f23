@@ -1,6 +1,3 @@
-import java.util.*;
-import java.util.Random;
-
 public class Simple implements Comparable<Simple> {
 
 	String alpha = null;
