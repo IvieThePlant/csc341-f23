@@ -98,8 +98,9 @@ class List {
 
         // Then, climb back up the list adjusting height using pointer
         // Pointer starts at newNode, and changed height of parent if needed
+        pointer = newNode;
         while (pointer != root) {
-            if (Math.abs(pointer.parent.left.height - pointer.parent.right.height) >= 10 && !rebuilding) {
+            if ((pointer.parent.compareHeight()) >= 10 && !rebuilding) {
                 balance();
             }
             if (pointer.height == pointer.parent.height) {
@@ -580,6 +581,20 @@ class List {
             System.out.print(value);
             System.out.print(" (L: " + left.value + ") ");
             System.out.println(" (R: " + right.value + ")");
+        }
+
+        private int compareHeight() {
+            int hLeft = -1;
+            if (this.left != null) {
+                hLeft = this.left.height;
+            }
+
+            int hRight = -1;
+            if (this.right != null) {
+                hRight = this.right.height;
+            }
+
+            return Math.abs(hLeft - hRight);
         }
     } // end class Node
 } // end class List
