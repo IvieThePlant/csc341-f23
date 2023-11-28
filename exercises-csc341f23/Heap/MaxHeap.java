@@ -1,6 +1,6 @@
 public class MaxHeap<T extends Comparable<T>> {
 
-    private T[] heap;
+    public T[] heap;
 
     private int count;
 
@@ -33,15 +33,16 @@ public class MaxHeap<T extends Comparable<T>> {
         T temp = heap[0];
         heap[0] = heap[count - 1];
         count--;
+        heap[count] = null;
         sinkDown(0);
         return temp;
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return count == 0;
     }
 
-    private boolean isFull() {
+    public boolean isFull() {
         return count == heap.length;
     }
 
@@ -76,8 +77,56 @@ public class MaxHeap<T extends Comparable<T>> {
 
     // TODO: sinkDown()
     private void sinkDown(int index) {
-        while (index < count) {
-            // sort index, left, and right
+        boolean sinking = true;
+
+        int left = leftChildIndex(index);
+        int right = rightChildIndex(index);
+
+        while (sinking) {
+            if (left == -1 && right == -1) {
+                sinking = false;
+
+            } else if (left != -1 && right == -1) {
+                sinkLeft(index);
+                index = left;
+
+            } else if (left != -1 && right != -1) {
+                if (heap[left].compareTo(heap[right]) > 0) {
+                    sinkLeft(index);
+                    index = left;
+                } else {
+                    sinkRight(index);
+                    index = right;
+                }
+            }
+
+            left = leftChildIndex(index);
+            right = rightChildIndex(index);
         }
+    }
+
+    private void sinkLeft(int index) {
+        T temp = heap[index];
+        int left = leftChildIndex(index);
+        heap[index] = heap[left];
+        heap[left] = temp;
+    }
+
+    private void sinkRight(int index) {
+        T temp = heap[index];
+        int right = rightChildIndex(index);
+        heap[index] = heap[right];
+        heap[right] = temp;
+    }
+
+    @Override
+    public String toString() {
+        String awn = "[";
+        for (T el : heap) {
+            if (el != null) {
+                awn += el.toString() + ",";
+            }
+        }
+        return awn + "]";
     }
 }
