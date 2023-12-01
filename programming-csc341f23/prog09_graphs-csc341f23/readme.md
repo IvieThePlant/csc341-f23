@@ -18,10 +18,10 @@ There are 3 text files provided that represent a maze. Each node is a decision p
 
 ### Implementation of interface QueueInterface
 
-- [] `public void push(T value)` : add a value to the end of the Queue.
-- [] `public T pop()` : remove the first element of the Queue.
-- [] `public T peek()` : return the first element of the Queue, but do not remove it.
-- [] `public boolean isEmpty()` : true if Queue is empty.
+- [x] `public void push(T value)` : add a value to the end of the Queue.
+- [x] `public T pop()` : remove the first element of the Queue.
+- [x] `public T peek()` : return the first element of the Queue, but do not remove it.
+- [x] `public boolean isEmpty()` : true if Queue is empty.
 
 This class has been implemented.
 

@@ -1,14 +1,23 @@
 /** Defines the methods for any type of Queue - FIFO, LIFO, priority */
 public interface QueueInterface<T> {
 
-    // TODO: Write push(), Add a new value to the queue
+    /*
+     * Add a value to the end of the Queue
+     */
     public void push(T value);
 
-    // TODO: Write pop(), Remove the next value form the queue
+    /*
+     * Remove the next value form the queue
+     */
     public T pop();
 
-    // TODO: Write peek(), Look at the next value on the queue
+    /*
+     * Look at the next value on the queue
+     */
     public T peek();
 
+    /*
+     * True if Queue is empty
+     */
     public boolean isEmpty();
 }
