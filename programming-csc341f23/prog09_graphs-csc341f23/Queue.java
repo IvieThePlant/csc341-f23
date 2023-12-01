@@ -8,10 +8,7 @@ public class Queue<T> implements QueueInterface<T> {
     /* Index of the location to place the next added value */
     private int tail;
 
-    /*
-     * Default Constuctor
-     * If no capacity given, defaults to 10
-     */
+
     public Queue() {
         this(10);
     }
@@ -22,21 +19,29 @@ public class Queue<T> implements QueueInterface<T> {
         queue = temp;
     }
 
-    // TODO: Write toString()
+
     @Override
     public String toString() {
-        String asw = null;
+        String asw = "";
+        for (T el : queue) {
+            asw += el.toString() + ", ";
+        }
         return asw;
-    }
+    } // end toString()
 
-    // TODO: Write next(), return the next index to be added at.
+    /**
+     * 
+     * @return
+     */
     public int next() {
-        return -1;
-    }
+        return tail;
+    } // end next()
 
-    // TODO: Write peek(), returns the first element in the Queue
+    /* 
+     * Returns the first element in the Queue
+     */
     public T peek() {
-        return null;
+        return queue[head];
     }
 
     // TODO: Write JavaDocs for isFull()
