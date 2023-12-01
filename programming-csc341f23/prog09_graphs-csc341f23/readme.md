@@ -29,7 +29,7 @@ This class has been implemented.
 
 The methods for `public class Queue<T> implements QueueInterface<T>` are specified by the QueueInterface. Additionally:
 
-- [] `public String toString()` : override Object toString, which might be useful for debugging.
+- [x] `public String toString()` : override Object toString, which might be useful for debugging.
 
 Your class Queue should have the following private member variables. You may include more than these.
 
@@ -44,11 +44,11 @@ You have already created a Queue. You will need to modify it so that it implemen
 
 The methods for `public class Stack<T> implements QueueInterface<T>` are specified by the QueueInterface. Additionally,
 
-- [] `public String toString()` : override Object toString
+- [x] `public String toString()` : override Object toString
 
 Your class Stack should have the following private member variable. You may include more than these.
 
-- [] `private int count` : number of elements currently in the stack. All operations occur at the end.
+- [x] `private int count` : number of elements currently in the stack. All operations occur at the end.
 
 You have already created a Stack. You will need to modify it so that it implements the QueueInterface.
 
