@@ -98,7 +98,9 @@ public class Maze {
 	/** Print each of the nodes with their children */
 	public void print() {
 		// TODO: Print each node in nodes and its children on 1 line
-		Enumeration<String> keys = nodes.keys();
+		for(Enumeration<MazeNode> allNodes = nodes.elements(); allNodes.hasMoreElements();) {
+
+		}
 
 	}
 
