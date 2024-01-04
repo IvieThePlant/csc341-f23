@@ -20,6 +20,7 @@ public class Maze {
 
 	// Track the number of nodes discovered before the exit was found
 	private int total_count = 0;
+	private int count = 0;
 	private int max_count = 0; // most at any time
 
 	/**
@@ -97,11 +98,16 @@ public class Maze {
 
 	/** Print each of the nodes with their children */
 	public void print() {
-		// TODO: Print each node in nodes and its children on 1 line
-		for(Enumeration<MazeNode> allNodes = nodes.elements(); allNodes.hasMoreElements();) {
-
+		String asw = "";
+		for (Enumeration<String> allKeys = nodes.keys(); allKeys.hasMoreElements();) {
+			String thisKey = allKeys.nextElement();
+			asw += thisKey;
+			for (MazeNode child : nodes.get(thisKey).children()) {
+				asw += child.value();
+			}
+			asw += "\n";
 		}
-
+		System.out.println(asw);
 	}
 
 	/**
@@ -114,11 +120,56 @@ public class Maze {
 		// TODO: Fill this in
 		// Be sure to count the number of elements pushed onto the queue
 		// As well as track the most number of elements on the queue at one time
+		// if ((!algorithm.equals("bsf")) && (!algorithm.equals("dfs"))) {
+		// return null;
+		// }
+
+		QueueInterface<MazeNode> workOrder;
+		if (algorithm.equals("bfs")) {
+			workOrder = new Queue<>(50);
+		} else {
+			workOrder = new Stack<>();
+		}
+
+		workOrder.push(start);
+		total_count++;
+		count++;
+		max_count = 1;
+
+		while (!workOrder.isEmpty()) {
+			MazeNode pointer = workOrder.pop();
+			count--;
+			for (MazeNode child : pointer.children()) {
+				if (child.isExit()) {
+					child.previous(pointer);
+					ArrayList<MazeNode> path = new ArrayList<>();
+					path.add(child);
+					while (pointer != null) {
+						path.add(pointer);
+						pointer = pointer.previous();
+					}
+					return path;
+				}
+				if (child.previous() == null) {
+					child.previous(pointer);
+					workOrder.push(child);
+					total_count++;
+					count++;
+					if (count > max_count) {
+						max_count = count;
+					}
+				}
+			}
+		}
 		return null;
 	}
 
 	public int total_count() {
 		return total_count;
+	}
+
+	public int count() {
+		return count;
 	}
 
 	public int max_count() {

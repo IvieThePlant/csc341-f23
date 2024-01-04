@@ -56,11 +56,11 @@ You have already created a Stack. You will need to modify it so that it implemen
 
 The method descriptions for `public class Maze` are:
 
-- [] `public load(String fname)` : create a graph/maze based on the file
-- [] `public LinkedList<MazeNode> solve(algorithm)` : find the exit using the specified algorithm (either "bfs" or "dfs").
-- [] `public void print()` : prints all nodes in the graph with their children.
-- [] `public int total_count()` : total number of nodes placed on the queue throughout the solving of the maze
-- [] `public int max_count()` : max number of nodes ever on the queue throughout the solving of the maze
+- [x] `public load(String fname)` : create a graph/maze based on the file
+- [x] `public LinkedList<MazeNode> solve(algorithm)` : find the exit using the specified algorithm (either "bfs" or "dfs").
+- [x] `public void print()` : prints all nodes in the graph with their children.
+- [x] `public int total_count()` : total number of nodes placed on the queue throughout the solving of the maze
+- [x] `public int max_count()` : max number of nodes ever on the queue throughout the solving of the maze
 
 The Breadth-First Search (bfs) and Depth-First Seach (dfs) algorithms are identical except that bfs uses an FIFO Queue and dfs uses an LIFO Queue. Here is the algorithm taking this into account:
 
